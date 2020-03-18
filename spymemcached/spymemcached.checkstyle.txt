@@ -1,0 +1,250 @@
+C:\Workspace\maven-sample\src\main\java\Main.java:4:1: Utility classes should not have a public or default constructor.
+BinaryConnectionFactory.java:68: if child at indentation level 8 not at correct indentation, 6
+ConnectionFactory.java:134: method def return type at indentation level 3 not at correct indentation, 2
+ConnectionFactoryBuilder.java:299: Line is longer than 80 characters.
+ConnectionFactoryBuilder.java:299:70: 'collector' hides a field.
+ConnectionFactoryBuilder.java:307: Line is longer than 80 characters.
+ConnectionFactoryBuilder.java:308: Line is longer than 80 characters.
+ConnectionFactoryBuilder.java:309: Line is longer than 80 characters.
+ConnectionFactoryBuilder.java:314: Line is longer than 80 characters.
+ConnectionFactoryBuilder.java:314:78: 'executorService' hides a field.
+ConnectionFactoryBuilder.java:324:56: 'authWaitTime' hides a field.
+ConnectionFactoryBuilder.java:451: Line is longer than 80 characters.
+DefaultConnectionFactory.java:36:8: Unused import - java.util.concurrent.Executors.
+DefaultConnectionFactory.java:38:8: Unused import - java.util.concurrent.SynchronousQueue.
+DefaultConnectionFactory.java:450:65: Literal Strings should be compared using equals(), not '=='.
+DefaultConnectionFactory.java:454: Line is longer than 80 characters.
+internal\AbstractListenableFuture.java:0: File does not end with a newline.
+internal\AbstractListenableFuture.java:28: Wrong order for 'java.util.ArrayList' import.
+internal\AbstractListenableFuture.java:148: Line is longer than 80 characters.
+internal\BulkGetFuture.java:177: Line is longer than 80 characters.
+internal\OperationFuture.java:211: Line is longer than 80 characters.
+internal\OperationFuture.java:223: Line is longer than 80 characters.
+internal\OperationFuture.java:241: Line is longer than 80 characters.
+internal\OperationFuture.java:250: Line is longer than 80 characters.
+KetamaConnectionFactory.java:46: member def modifier at indentation level 4 not at correct indentation, 2
+KetamaConnectionFactory.java:47: member def modifier at indentation level 4 not at correct indentation, 2
+KetamaConnectionFactory.java:56: ctor def modifier at indentation level 4 not at correct indentation, 2
+KetamaConnectionFactory.java:78: ctor def child at indentation level 6 not at correct indentation, 4
+KetamaConnectionFactory.java:79: ctor def child at indentation level 6 not at correct indentation, 4
+KetamaConnectionFactory.java:97: method def child at indentation level 8 not at correct indentation, 4
+KetamaConnectionFactory.java:99: method def rcurly at indentation level 4 not at correct indentation, 2
+KetamaConnectionFactory.java:105: method def child at indentation level 6 not at correct indentation, 4
+KetamaConnectionFactory.java:112: method def child at indentation level 6 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:29: First sentence should end with a period.
+KetamaNodeKeyFormatter.java:35: Missing a Javadoc comment.
+KetamaNodeKeyFormatter.java:35: enum def ident at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:35: enum def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:37: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:41: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:42: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:43: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:59: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:70: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:71: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:72: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:75: enum def rcurly at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:77: member def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:79: method def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:80: method def child at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:81: method def rcurly at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:86: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:86: member def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:88: ctor def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:90: ctor def rcurly at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:92: ctor def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:93: ctor def child at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:94: ctor def rcurly at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:101: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:105: method def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeKeyFormatter.java:115: method def child at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:116: if at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:117: switch at indentation level 12 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:118: case child at indentation level 16 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:119: Line is longer than 80 characters.
+KetamaNodeKeyFormatter.java:119: block child at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:120: block child at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:121: if at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:122: if child at indentation level 24 not at correct indentation, 10
+KetamaNodeKeyFormatter.java:123: if rcurly at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:124: block child at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:125: case child at indentation level 16 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:126: block child at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:127: if at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:128: if child at indentation level 24 not at correct indentation, 10
+KetamaNodeKeyFormatter.java:129: if rcurly at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:130: block child at indentation level 20 not at correct indentation, 8
+KetamaNodeKeyFormatter.java:131: case child at indentation level 16 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:133: switch rcurly at indentation level 12 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:134: if child at indentation level 12 not at correct indentation, 6
+KetamaNodeKeyFormatter.java:135: if rcurly at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:136: method def child at indentation level 8 not at correct indentation, 4
+KetamaNodeKeyFormatter.java:137: method def rcurly at indentation level 4 not at correct indentation, 2
+KetamaNodeLocator.java:30: Wrong order for 'java.net.InetSocketAddress' import.
+KetamaNodeLocator.java:70: Line is longer than 80 characters.
+KetamaNodeLocator.java:73: First sentence should end with a period.
+KetamaNodeLocator.java:86: ctor def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeLocator.java:89: Line is longer than 80 characters.
+KetamaNodeLocator.java:107: First sentence should end with a period.
+KetamaNodeLocator.java:119: ctor def modifier at indentation level 4 not at correct indentation, 2
+KetamaNodeLocator.java:226: for at indentation level 8 not at correct indentation, 6
+KetamaNodeLocator.java:227: for child at indentation level 12 not at correct indentation, 8
+KetamaNodeLocator.java:228: for rcurly at indentation level 8 not at correct indentation, 6
+KetamaNodeLocator.java:234: if child at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:235: if child at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:236: Line is longer than 80 characters.
+KetamaNodeLocator.java:236: if child at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:237: for at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:238: for at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:239: for child at indentation level 18 not at correct indentation, 12
+KetamaNodeLocator.java:240: Line is longer than 80 characters.
+KetamaNodeLocator.java:240: for child at indentation level 18 not at correct indentation, 12
+KetamaNodeLocator.java:241: for rcurly at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:242: for rcurly at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:248: if at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:249: for at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:250: for at indentation level 18 not at correct indentation, 12
+KetamaNodeLocator.java:251: for child at indentation level 20 not at correct indentation, 14
+KetamaNodeLocator.java:252: Line is longer than 80 characters.
+KetamaNodeLocator.java:252: for child at indentation level 20 not at correct indentation, 14
+KetamaNodeLocator.java:253: for rcurly at indentation level 18 not at correct indentation, 12
+KetamaNodeLocator.java:254: for rcurly at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:255: if rcurly at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:256: for at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:257: Line is longer than 80 characters.
+KetamaNodeLocator.java:257: for child at indentation level 18 not at correct indentation, 12
+KetamaNodeLocator.java:258: for rcurly at indentation level 14 not at correct indentation, 10
+KetamaNodeLocator.java:259: else rcurly at indentation level 10 not at correct indentation, 8
+KetamaNodeLocator.java:266: Line is longer than 80 characters.
+KetamaNodeLocator.java:267: method def child at indentation level 6 not at correct indentation, 4
+KetamaNodeLocator.java:268: Line is longer than 80 characters.
+KetamaNodeLocator.java:268: method def child at indentation level 6 not at correct indentation, 4
+KetamaNodeLocator.java:269: for at indentation level 6 not at correct indentation, 4
+KetamaNodeLocator.java:270: for child at indentation level 10 not at correct indentation, 6
+KetamaNodeLocator.java:274: for child at indentation level 10 not at correct indentation, 6
+KetamaNodeLocator.java:275: for rcurly at indentation level 6 not at correct indentation, 4
+KetamaNodeLocator.java:276: method def child at indentation level 6 not at correct indentation, 4
+MemcachedClient.java:1: File length is 2,656 lines (max allowed is 2,500).
+MemcachedClient.java:56: Wrong order for 'java.io.IOException' import.
+MemcachedClient.java:308: operator new child at indentation level 6 not at correct indentation, 8
+MemcachedClient.java:393: operator new child at indentation level 6 not at correct indentation, 8
+MemcachedClient.java:627: operator new child at indentation level 6 not at correct indentation, 8
+MemcachedClient.java:1078: operator new child at indentation level 6 not at correct indentation, 8
+MemcachedClient.java:1322: Line is longer than 80 characters.
+MemcachedClient.java:1722:36: ',' is not followed by whitespace.
+MemcachedClient.java:1723:34: ',' is not followed by whitespace.
+MemcachedClient.java:1734:13: '}' should be on the same line.
+MemcachedClient.java:1987: Line is longer than 80 characters.
+MemcachedClient.java:1995: Line is longer than 80 characters.
+MemcachedClientIF.java:30: Wrong order for 'java.net.SocketAddress' import.
+MemcachedConnection.java:47: Wrong order for 'java.io.IOException' import.
+MemcachedConnection.java:267: Line is longer than 80 characters.
+MemcachedConnection.java:290:36: '(' is followed by whitespace.
+MemcachedConnection.java:293: Line is longer than 80 characters.
+MemcachedConnection.java:345: Line is longer than 80 characters.
+MemcachedConnection.java:356: Line matches the illegal pattern 'Trailing whitespace'.
+MemcachedConnection.java:733: Line is longer than 80 characters.
+MemcachedConnection.java:734: if at indentation level 6 not at correct indentation, 4
+MemcachedConnection.java:735: if child at indentation level 10 not at correct indentation, 6
+MemcachedConnection.java:736: if rcurly at indentation level 6 not at correct indentation, 4
+MemcachedConnection.java:738: if at indentation level 6 not at correct indentation, 4
+MemcachedConnection.java:739: if child at indentation level 10 not at correct indentation, 6
+MemcachedConnection.java:740: if rcurly at indentation level 6 not at correct indentation, 4
+MemcachedConnection.java:1060: Line is longer than 80 characters.
+MemcachedConnection.java:1083:71: '+' should be on a new line.
+MemcachedConnection.java:1418: Line is longer than 80 characters.
+MemcachedNodeROImpl.java:35: Missing a Javadoc comment.
+metrics\AbstractMetricCollector.java:26: Line is longer than 80 characters.
+metrics\DefaultMetricCollector.java:25: Using the '.*' form of import should be avoided - com.codahale.metrics.*.
+metrics\DefaultMetricCollector.java:28: Wrong order for 'java.io.File' import.
+metrics\DefaultMetricCollector.java:100: Line is longer than 80 characters.
+metrics\DefaultMetricCollector.java:102: Line is longer than 80 characters.
+metrics\DefaultMetricCollector.java:104: Line is longer than 80 characters.
+metrics\DefaultMetricCollector.java:132: Line is longer than 80 characters.
+metrics\DefaultMetricCollector.java:132: else child at indentation level 8 not at correct indentation, 6
+OperationFactory.java:57: Wrong order for 'javax.security.auth.callback.CallbackHandler' import.
+OperationFactory.java:58: Wrong order for 'java.util.Collection' import.
+OperationFactory.java:293: Line is longer than 80 characters.
+OperationFactory.java:299: Line is longer than 80 characters.
+ops\BaseOperationFactory.java:29: Wrong order for 'java.util.ArrayList' import.
+ops\MultiOperationCallback.java:51: if child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:52: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:53: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:54: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:55: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:56: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:57: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:58: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:59: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:60: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:61: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:62: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:63: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:64: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:65: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:66: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:67: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:68: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:69: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:70: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:71: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:72: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:73: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:74: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:75: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:76: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:77: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:78: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:79: block child at indentation level 8 not at correct indentation, 6
+ops\StatusCode.java:80: case child at indentation level 6 not at correct indentation, 4
+ops\StatusCode.java:81: block child at indentation level 8 not at correct indentation, 6
+protocol\ascii\AsciiOperationFactory.java:60: Wrong order for 'javax.security.auth.callback.CallbackHandler' import.
+protocol\ascii\AsciiOperationFactory.java:61: Wrong order for 'java.util.ArrayList' import.
+protocol\ascii\AsciiOperationFactory.java:216: method def child at indentation level 2 not at correct indentation, 4
+protocol\ascii\TouchOperationImpl.java:33: Wrong order for 'java.nio.ByteBuffer' import.
+protocol\BaseOperationImpl.java:34:8: Unused import - java.util.concurrent.atomic.AtomicLong.
+protocol\BaseOperationImpl.java:74: Line is longer than 80 characters.
+protocol\binary\BinaryMemcachedNodeImpl.java:48:10: More than 10 parameters.
+protocol\binary\BinaryOperationFactory.java:62: Wrong order for 'javax.security.auth.callback.CallbackHandler' import.
+protocol\binary\BinaryOperationFactory.java:63: Wrong order for 'java.util.ArrayList' import.
+protocol\binary\BinaryOperationFactory.java:178: Line is longer than 80 characters.
+protocol\binary\BinaryOperationFactory.java:189: Line is longer than 80 characters.
+protocol\binary\BinaryOperationFactory.java:189:79: ',' is not followed by whitespace.
+protocol\binary\MultiGetOperationImpl.java:37:8: Unused import - net.spy.memcached.ops.Operation.
+protocol\binary\MultiGetOperationImpl.java:45: Missing a Javadoc comment.
+protocol\binary\OperationImpl.java:227: if child at indentation level 8 not at correct indentation, 6
+protocol\binary\OperationImpl.java:229: else child at indentation level 8 not at correct indentation, 6
+protocol\binary\OperationImpl.java:230: else child at indentation level 8 not at correct indentation, 6
+protocol\binary\OperationImpl.java:232: switch at indentation level 8 not at correct indentation, 6
+protocol\binary\OperationImpl.java:233: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:234: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:236: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:237: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:239: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:240: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:242: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:243: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:244: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:245: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:246: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:247: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:248: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:249: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:250: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:251: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:252: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:253: Line is longer than 80 characters.
+protocol\binary\OperationImpl.java:253: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:254: case child at indentation level 12 not at correct indentation, 6
+protocol\binary\OperationImpl.java:255: block child at indentation level 16 not at correct indentation, 8
+protocol\binary\OperationImpl.java:256: switch rcurly at indentation level 8 not at correct indentation, 6
+spring\MemcachedClientFactoryBean.java:190:46: 'shutdownTimeoutSeconds' hides a field.
+util\DefaultKetamaNodeLocatorConfiguration.java:39: First sentence should end with a period.
+util\DefaultKetamaNodeLocatorConfiguration.java:44: ctor def child at indentation level 6 not at correct indentation, 4
+util\DefaultKetamaNodeLocatorConfiguration.java:47: First sentence should end with a period.
+util\DefaultKetamaNodeLocatorConfiguration.java:50: Line is longer than 80 characters.
+util\DefaultKetamaNodeLocatorConfiguration.java:53: Line is longer than 80 characters.
+util\DefaultKetamaNodeLocatorConfiguration.java:54: ctor def child at indentation level 6 not at correct indentation, 4
+util\DefaultKetamaNodeLocatorConfiguration.java:67: First sentence should end with a period.
+util\StringUtils.java:28: Wrong order for 'java.util.Collection' import.
+util\StringUtils.java:40:32: Name 'decimalPattern' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.
