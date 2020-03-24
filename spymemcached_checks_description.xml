@@ -1,0 +1,629 @@
+<?xml version="1.0"?>
+<!--
+ Copyright (c) 2009-2011  Couchbase, Inc.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ of the Software, and to permit persons to whom the Software is furnished to do
+ so, subject to the following conditions:
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+-->
+
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+
+<!--
+  Checkstyle configuration for Spymemcached that is based on the sun_checks.xml
+  file that is bundled with Checkstyle and includes checks for:
+  - the Java Language Specification at
+    http://java.sun.com/docs/books/jls/second_edition/html/index.html
+  - the Sun Code Conventions at http://java.sun.com/docs/codeconv/
+  - the Javadoc guidelines at
+    http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+  - the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html
+  - some best practices
+  Checkstyle is very configurable. Be sure to read the documentation at
+  http://checkstyle.sf.net (or in your downloaded distribution).
+  Most Checks are configurable, be sure to consult the documentation.
+  To completely disable a check, just comment it out or delete it from the file.
+  Finally, it is worth reading the documentation.
+-->
+<module name="Checker">
+    <!-- https://checkstyle.sourceforge.io/config_misc.html#NewlineAtEndOfFile -->
+    <!--
+        파일의 End Line에 New Line으로 끝나야 함
+    -->
+    <module name="NewlineAtEndOfFile"/>
+
+    <!-- https://checkstyle.sourceforge.io/config_sizes.html#FileLength -->
+    <!--
+        하나의 파일이 2500 라인을 넘어가면 안됨
+    -->
+    <module name="FileLength">
+        <property name="max" value="2500"/>
+    </module>
+
+    <!-- Google CheckStyle 참고 -->
+    <module name="FileTabCharacter"/>
+
+    <module name="TreeWalker">
+
+        <!-- https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType -->
+        <!--
+            public annotation/enum/class/interface에 JavaDoc이 존재해야 함
+        -->
+        <module name="JavadocType">
+            <property name="scope" value="public"/>
+            <property name="allowMissingParamTags" value="true"/>
+        </module>
+
+
+        <!-- https://checkstyle.sourceforge.io/config_javadoc.html#JavadocStyle -->
+        <!--
+            적절하지 않거나 존재하지 않는 HTML 태그 사용 및 첫 문장에 마침표를 사용했는지 검사
+
+           /* bad */
+           /**
+            * This is Test class
+            * <test>This is Test class</test>
+            */
+           class Test {
+           }
+
+           /* good */
+           /**
+            * This is Test class.
+            * <p>This is Test class</p>
+            */
+        -->
+        <module name="JavadocStyle"/>
+
+
+        <!-- https://checkstyle.sourceforge.io/config_regexp.html#Regexp -->
+        <!--
+            Line 뒤에 공백 혹은 Tab 문자가 붙는지 검사
+        -->
+        <module name="Regexp">
+            <property name="format" value="[ \t]+$"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="Trailing whitespace"/>
+        </module>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#SuperClone -->
+        <!--
+            /* bad */
+            @Override
+            public Object clone throws CloneNotSupportedException {
+                return ...
+            }
+
+            /* good */
+            @Override
+            public Object  clone throws CloneNotSUpportedException {
+                super.clone();
+                return ...
+            }
+        -->
+        <module name="SuperClone"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_naming.html#ConstantName -->
+        <!--
+            static final 변수 이름 검사 ("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")
+
+            /* bad */
+            public static final int constant = 100;
+
+            /* good */
+            public static final int FOO = 100;
+        -->
+        <module name="ConstantName"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="ClassTypeParameterName">
+            <property name="format" value="^[A-Z]+$"/>
+        </module>
+
+        <!-- https://checkstyle.sourceforge.io/config_naming.html#LocalFinalVariableName -->
+        <!--
+             지역 final 변수에 대한 이름 검사 ("^[a-z][a-zA-Z0-9]*$")
+
+             /* bad */
+             public void foo() {
+                final int BAR = 100;
+                final int Bar = 100;
+             }
+
+             /* good */
+             public void foo() {
+                final int bar = 100;
+             }
+        -->
+        <module name="LocalFinalVariableName"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="MethodTypeParameterName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_naming.html#StaticVariableName -->
+        <!--
+            static 변수 이름 검사 ("^[a-z][a-zA-Z0-9]*$")
+
+            /* bad */
+            static int Foo = 300;
+            static int FOO = 300;
+
+            /* good */
+            static int foo = 300;
+        -->
+        <module name="StaticVariableName"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="TypeName"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="AvoidStarImport" />
+
+        <!-- https://checkstyle.sourceforge.io/config_imports.html#IllegalImport -->
+        <!--
+            sun 패키지 사용 검사
+
+            /* bad */
+            import sun.applet.AppletClassLoader;
+        -->
+        <module name="IllegalImport"/>
+
+
+        <!-- https://checkstyle.sourceforge.io/config_imports.html#RedundantImport -->
+        <!--
+           java.lang, 중복, 같은 패키지에 대한 import 검사
+
+           /* bad */
+           package foo;
+
+           import java.lang.String;   // java.lang
+           import java.lang.String;   // duplicate
+           import foo.Bar;            // same package
+        -->
+        <module name="RedundantImport"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_imports.html#UnusedImports -->
+        <!--
+            사용하지 않는 import 검사
+        -->
+        <module name="UnusedImports"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_imports.html#ImportOrder -->
+        <!--
+            import 순서 검사
+
+            /* bad */
+            import java.util.Map;
+            import java.util.List;
+            import java.util.ArrayList;
+
+            /* bad */
+            import java.util.ArrayList;
+            import java.util.List;
+            import java.util.Map;
+        -->
+        <module name="ImportOrder">
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="LineLength"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_sizes.html#MethodLength -->
+        <!--
+            메소드 길이 검사
+        -->
+        <module name="MethodLength">
+            <property name="max" value="10000"/>
+        </module>
+
+        <!-- https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber -->
+        <!--
+            파라미터 길이 검사
+        -->
+        <module name="ParameterNumber">
+            <property name="max" value="10"/>
+        </module>
+
+        <!-- Google CheckStyle의 OneTopLevelClass 참고 -->
+        <module name="OuterTypeNumber"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="GenericWhitespace"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForIteratorPad -->
+        <!--
+            for loop의 공백 검사
+
+            /* bad */
+            int foo = 0;
+            for ( ; foo < 100; ) {
+                foo++;
+            }
+
+            /* good */
+            int foo = 0;
+            for (; foo < 100;) {
+                foo++;
+            }
+        -->
+        <module name="EmptyForIteratorPad"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="MethodParamPad"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_whitespace.html#NoWhitespaceAfter -->
+        <!--
+            /* bad */
+            if (! foo) {
+                ++ bar;
+            }
+
+            /* good */
+            if (!foo) {
+                ++bar;
+            }
+        -->
+        <module name="NoWhitespaceAfter">
+            <property name="tokens"
+                      value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS" />
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+
+
+        <!-- https://checkstyle.sourceforge.io/config_whitespace.html#TypecastParenPad -->
+        <!--
+            /* bad */
+            foo = ( String ) bar;
+
+            /* good */
+            foo = (String) bar;
+        -->
+        <module name="TypecastParenPad"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_whitespace.html#WhitespaceAfter -->
+        <!--
+            /* bad */
+            void foo(int bar,int baz) {
+            }
+
+            /* good */
+            void foo(int bar, int baz) {
+            }
+        -->
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI"/>
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="ModifierOrder"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_modifier.html#RedundantModifier -->
+        <!--
+            /* bad */
+            public interface Foo {
+                public void bar();
+            }
+
+            /* good */
+            public interface Foo {
+                void bar();
+            }
+        -->
+        <module name="RedundantModifier"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks -->
+        <!--
+            /* bad */
+            int foo = 0;
+            {
+                foo = 3;
+            }
+
+            /* good */
+            int foo = 0;
+            foo = 3;
+        -->
+        <module name="AvoidNestedBlocks"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="EmptyBlock">
+            <property name="option" value="text" />
+            <property name="tokens" value="LITERAL_CATCH" />
+        </module>
+        <module name="EmptyBlock">
+            <property name="option" value="stmt" />
+            <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY,
+          LITERAL_IF, LITERAL_FOR, LITERAL_TRY, LITERAL_WHILE, INSTANCE_INIT,
+          STATIC_INIT" />
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="LeftCurly"/>
+        <module name="NeedBraces"/>
+        <module name="RightCurly"/>
+
+        <!-- 최신 버전에서 제거됨 -->
+        <module name="DoubleCheckedLocking"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#EmptyStatement -->
+        <!--
+            /* bad */
+            if (foo == bar);
+            System.out.println("baz");
+
+            /* good */
+            if (foo == bar) {
+            }
+            System.out.println("baz");
+        -->
+        <module name="EmptyStatement"/>
+
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode -->
+        <!--
+            /* bad */
+            class Foo {
+                @Override
+                public boolean equals(Object obj) {
+                    return ...
+                }
+            }
+
+            /* good - must override hashcode */
+            class Foo {
+                @Override
+                public boolean equals(Object obj) {
+                    return ...
+                }
+
+                @Override
+                public int hashCode() {
+                    return ...
+                }
+            }
+        -->
+        <module name="EqualsHashCode"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality -->
+        <!--
+            /* bad */
+            if (foo == "bar") {
+            }
+
+            /* good */
+            if (foo.equals("bar")) {
+            }
+        -->
+        <module name="StringLiteralEquality"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#HiddenField -->
+        <!--
+            /* bad */
+            class Foo {
+                int bar;
+                public void setBar(int bar) {
+                    this.bar = bar;
+                }
+            }
+
+            /* good */
+            class Foo {
+                int bar;
+                public void setBar(int baz) {
+                    this.bar = baz;
+                }
+            }
+        -->
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#IllegalInstantiation -->
+        <!--
+            /* bad */
+            Boolean bool = new Boolean(true);
+
+            /* good */
+            Boolean bool = Boolean.TRUE;
+            Boolean bool = true;
+        -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean"/>
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="MissingSwitchDefault"/>
+
+        <!-- 최신 버전에서 제거됨 -->
+        <module name="RedundantThrows"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression -->
+        <!--
+            /* bad */
+            if (foo == false) {
+            }
+
+            /* good */
+            if (!foo) {
+            }
+        -->
+        <module name="SimplifyBooleanExpression"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanReturn -->
+        <!--
+            /* bad */
+            if (foo()) {
+                return true;
+            } else {
+                return false;
+            }
+
+            /* good */
+            return foo();
+        -->
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast -->
+        <!--
+            default 뒤에 case가 존재하는지 검사
+
+            /* bad */
+            switch (foo) {
+                case 1:
+                    break;
+                default:
+                case 2:
+                    break;
+            }
+
+            /* good */
+            switch (foo) {
+                case 1:
+                    break;
+                case 2:
+                default:
+                    break;
+            }
+        -->
+        <module name="DefaultComesLast" />
+
+        <!-- https://checkstyle.sourceforge.io/config_design.html#FinalClass -->
+        <!--
+            /* bad */
+            class Foo {
+                private Foo() {
+                }
+            }
+
+            /* good */
+            final class Foo {
+                private Foo() {
+                }
+            }
+        -->
+        <module name="FinalClass"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_design.html#HideUtilityClassConstructor -->
+        <!--
+            /* bad */
+            class Util {
+                public static void add(int a, int b) { }
+                public static void div(int a, int b) { }
+            }
+
+            /* good */
+            class Util {
+                private Util() {
+                }
+                public static void add(int a, int b) { }
+                public static void div(int a, int b) { }
+            }
+        -->
+        <module name="HideUtilityClassConstructor"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType -->
+        <!--
+            /* bad */
+            interface Foo {
+                int BAR = 100;
+            }
+
+            /* good */
+            class Foo {
+                private Foo() {
+                }
+                public static final int BAR = 100;
+            }
+        -->
+        <module name="InterfaceIsType"/>
+
+        <!-- https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier -->
+        <!--
+            /* bad */
+            int foo;
+            int bar;
+            public final int baz;
+            public int qux;
+
+            /* good */
+            private int foo;
+            protected int bar;
+            private final int int baz
+            protected int qux
+        -->
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true" />
+        </module>
+
+        <!-- https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride -->
+        <!--
+            /* bad */
+            /*
+             * {@inheritDoc}
+             */
+            public void foo() {
+            }
+
+            /* good */
+            /*
+             * {@inheritDoc}
+             */
+            @Override
+            public void foo() {
+            }
+        -->
+        <module name="MissingOverride"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="ArrayTypeStyle"/>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="Indentation">
+            <property name="basicOffset" value="2" />
+            <property name="caseIndent" value="0" />
+        </module>
+
+        <!-- Google CheckStyle 참고 -->
+        <module name="UpperEll"/>
+
+        <!-- 최신 버전에서 제거됨 -->
+        <module name="FileContentsHolder" />
+
+    </module>
+
+    <!-- https://checkstyle.sourceforge.io/config_filters.html#SuppressionCommentFilter -->
+    <!--
+        check style 무시
+
+        CHECKSTYLE:OFF
+        if (  foo ==   bar  )
+        {
+        }
+        CHECKSTYLE:ON
+    -->
+    <module name="SuppressionCommentFilter" />
+
+</module>
