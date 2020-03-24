@@ -1,6 +1,6 @@
 # Checkstyle
 
-[Checkstyle](https://checkstyle.sourceforge.io/)에서 제공되는 모듈을 분석한다.
+[Checkstyle](https://checkstyle.sourceforge.io/)에서 제공되는 모듈 내용을 정리한다.
 - [Google Checkstyle](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
 - [Spymemcached Checkstyle](https://github.com/couchbase/spymemcached/blob/master/etc/checkstyle.xml)
 
