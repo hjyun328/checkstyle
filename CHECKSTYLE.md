@@ -5,6 +5,38 @@
 - [Spymemcached Checkstyle](https://github.com/couchbase/spymemcached/blob/master/etc/checkstyle.xml)
 
 
+## [Annotations](https://checkstyle.sourceforge.io/config_annotation.html)
+
+### [MissingOverride](https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride) (spymemcached)
+
+@inheritDoc이 부여된 메소드가 override 됐는지를 검사한다.
+
+```xml
+<module name="MissingOverride"/>
+```
+
+VIOLATION
+```java
+/*
+ * {@inheritDoc}
+ */
+public void foo() {
+}
+```
+
+OK
+```java
+/*
+ * {@inheritDoc}
+ */
+@Override
+public void foo() {
+}
+```
+
+
+
+
 ## [Block Checks](https://checkstyle.sourceforge.io/config_blocks.html)
 
 ### [AvoidNestedBlocks](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) (spymemcached)
@@ -121,7 +153,6 @@ if (foo == bar) {
 }
 ```
 
-
 ### [RightCurly](https://checkstyle.sourceforge.io/config_blocks.html#RightCurly) (google, spymemcached)
 
 RightCurly('}')의 줄바꿈을 검사한다.
@@ -152,8 +183,277 @@ if (foo == bar) {
 }
 ```
 
+## [Class Design](https://checkstyle.sourceforge.io/config_design.html)
+
+### [FinalClass](https://checkstyle.sourceforge.io/config_design.html#FinalClass) (spymemcached)
+
+private 생성자를 가진 클래스의 modifier가 final인지를 검사한다.
+
+```xml
+<module name="FinalClass"/>
+```
+
+VIOLATION
+```java
+class Foo {
+    private Foo() {
+    }
+}
+```
+
+OK
+```java
+final class Foo {
+    private Foo() {
+    }
+}
+```
+
+### [HideUtilityClassConstructor](https://checkstyle.sourceforge.io/config_design.html#HideUtilityClassConstructor) (spymemcached)
+
+static 메소드만 가지는 util 클래스의 생성자가 private인지를 검사한다.
+
+```xml
+<module name="HideUtilityClassConstructor"/>
+```
+
+VIOLATION
+```java
+class Util {
+    public static void add(int a, int b) { }
+    public static void div(int a, int b) { }
+}
+```
+
+OK
+```java
+class Util {
+    private Util() {
+    }
+    public static void add(int a, int b) { }
+    public static void div(int a, int b) { }
+}
+```
+
+## [InterfaceIsType](https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType) (spymemcached)
+
+interface가 type으로 쓰이는지를 검사한다.
+
+```xml
+<module name="InterfaceIsType"/>
+```
+
+VIOLATION
+```java
+interface Foo {
+    int BAR = 100;
+}
+```
+
+OK
+```java
+class Foo {
+    private Foo() {
+    }
+    public static final int BAR = 100;
+}
+```
+
+## [VisibilityModifier](https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier) (spymemcached)
+
+클래스 멤버의 modifier가 private, protected 인지를 검사한다.
+
+```xml
+<module name="VisibilityModifier">
+    <property name="protectedAllowed" value="true" />
+</module>
+```
+
+VIOLATION
+```java
+int foo;
+int bar;
+public final int baz;
+public int qux;
+```
+
+OK
+```java
+private int foo;
+protected int bar;
+private final int int baz
+protected int qux
+```
+
 
 ## [Coding](https://checkstyle.sourceforge.io/config_coding.html)
+
+### [DefaultComesLast](https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast) (spymemcached)
+
+switch에서 default 뒤에 case가 존재하는지 검사한다.
+
+```xml
+<module name="DefaultComesLast" />
+```
+
+VIOLATION
+```java
+switch (foo) {
+    case 1:
+        break;
+    default:
+    case 2:
+        break;
+}
+```
+
+OK
+```java
+switch (foo) {
+    case 1:
+        break;
+    case 2:
+    default:
+        break;
+}
+```
+
+### [EmptyStatement](https://checkstyle.sourceforge.io/config_coding.html#EmptyStatement) (spymemcached)
+
+
+```xml
+<module name="EmptyStatement"/>
+```
+
+VIOLATION
+```java
+if (foo == bar);
+    System.out.println("baz");  // always print baz
+```
+
+OK
+```java
+if (foo == bar) {
+    System.out.println("baz");
+}
+```
+
+### [EqualsHashCode](https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode) (spymemcached)
+
+equals 메소드를 override하면 hashcode 메소드도 override 했는지 검사한다.
+
+```xml
+<module name="EqualsHashCode"/>
+```
+
+VIOLATION
+```java
+class Foo {
+    @Override
+    public boolean equals(Object obj) {
+        return ...
+    }
+}
+```
+
+OK
+```java
+class Foo {
+    @Override
+    public boolean equals(Object obj) {
+        return ...
+    }
+
+    @Override
+    public int hashCode() {
+        return ...
+    }
+}
+```
+
+### [MissingSwitchDefault](https://checkstyle.sourceforge.io/config_coding.html#MissingSwitchDefault) (google, spymemcached)
+
+switch에서 default가 존재하는지 검사한다.
+
+```xml
+<module name="MissingSwitchDefault"/>
+```
+
+VIOLATION
+```java
+switch (i) {
+    case 1:
+        break;
+    case 2:
+        break;
+}
+```
+
+OK
+```java
+switch (i) {
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+        break;
+}
+```
+
+### [SimplifyBooleanExpression](https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression) (spymemcached)
+
+```xml
+<module name="SimplifyBooleanExpression"/>
+```
+
+VIOLATION
+```java
+if (foo == false) { }
+```
+
+OK
+```java
+if (!foo) { }
+```
+
+### [SimplifyBooleanReturn](https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanReturn) (spymemcached)
+
+```xml
+<module name="SimplifyBooleanReturn"/>
+```
+
+VIOLATION
+```java
+if (foo()) {
+    return true;
+} else {
+    return false;
+}
+```
+
+OK
+```java
+return foo();
+```
+
+### [StringLiteralEquality](https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality) (spymemcached)
+
+```xml
+<module name="StringLiteralEquality"/>
+```
+
+VIOLATION
+```java
+if (foo == "bar") {
+}
+```
+
+OK
+```java
+if (foo.equals("bar")) {
+}
+```
 
 ### [SuperClone](https://checkstyle.sourceforge.io/config_coding.html#SuperClone) (spymemcached)
 
@@ -338,6 +638,99 @@ OK
 String[] foo;
 ```
 
+### [Indentation](https://checkstyle.sourceforge.io/config_misc.html#Indentation) (google, spymemcached)
+
+```xml
+<module name="Indentation">
+    <property name="basicOffset" value="2"/>
+    <property name="braceAdjustment" value="0"/>
+    <property name="caseIndent" value="2"/>
+    <property name="throwsIndent" value="4"/>
+    <property name="lineWrappingIndentation" value="4"/>
+    <property name="arrayInitIndent" value="2"/>
+</module>
+```
+
+VIOLATION
+```java
+/* <property name="basicOffset" value="2"/> */
+class Foo {
+    void bar() {
+    }
+}
+
+/* <property name="braceAdjustment" value="0"/> */
+void bar() {
+    }
+
+/* <property name="caseIndent" value="2"/> */
+switch (foo) {
+    case 0:
+        break;
+    case 1:
+        break;
+    default:
+        break;
+}
+
+/* <property name="throwsIndent" value="4"/> */
+public static void main(String[] args) throws
+  IOException {
+}
+
+/* <property name="lineWrappingIndentation" value="4"/> */
+if ((foo == bar)
+  && (baz == qux)) {
+    System.out.println("equal");
+}
+
+/* <property name="arrayInitIndent" value="2"/> */
+int[] foo = {
+    5,
+    6
+};
+```
+
+OK
+```java
+/* <property name="basicOffset" value="2"/> */
+class Foo {
+  void bar() {
+  }
+}
+
+/* <property name="braceAdjustment" value="0"/> */
+void bar() {
+}
+
+/* <property name="caseIndent" value="2"/> */
+switch (foo) {
+  case 0:
+    break;
+  case 1:
+    break;
+  default:
+    break;
+}
+
+/* <property name="throwsIndent" value="4"/> */
+public static void main(String[] args) throws
+    IOException {
+}
+
+/* <property name="lineWrappingIndentation" value="4"/> */
+if ((foo == bar)
+    && (baz == qux)) {
+    System.out.println("equal");
+}
+
+/* <property name="arrayInitIndent" value="2"/> */
+int[] foo = {
+  5,
+  6
+};
+```
+
 ### [NewlineAtEndOfFile](https://checkstyle.sourceforge.io/config_misc.html#NewlineAtEndOfFile) (spymemcached)
 
 파일의 맨 끝에 newline('\n')이 존재하는지 검사한다.
@@ -361,6 +754,23 @@ OK
 4
 ```
 
+### [UpperEll](https://checkstyle.sourceforge.io/config_misc.html#UpperEll) (google, spymemcached)
+
+long을 'l'이 아닌 'L'로 표현하는지를 검사한다.
+
+```xml
+<module name="UpperEll"/>
+```
+
+VIOLATION
+```java
+long value = 100l // 1001?
+```
+
+OK
+```java
+long value = 100L
+```
 
 ## [Modifier](https://checkstyle.sourceforge.io/config_modifier.html)
 
