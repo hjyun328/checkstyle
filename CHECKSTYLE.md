@@ -5,11 +5,74 @@
 - [Spymemcached Checkstyle](https://github.com/couchbase/spymemcached/blob/master/etc/checkstyle.xml)
 
 
+## [File Filters](https://checkstyle.sourceforge.io/config_filefilters.html)
+
+### [BeforeExecutionExclusionFileFilter](https://checkstyle.sourceforge.io/config_filefilters.html#BeforeExecutionExclusionFileFilter) (google)
+
+checkstyle 검사를 제외할 파일 패턴 설정.
+
+```xml
+<module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+</module>
+```
+
+
 ## [Annotations](https://checkstyle.sourceforge.io/config_annotation.html)
+
+### [AnnotationLocation](https://checkstyle.sourceforge.io/config_annotation.html#AnnotationLocation) (google)
+
+annotation의 위치를 검사.
+
+```xml
+<module name="AnnotationLocation">
+    <property name="id" value="AnnotationLocationMostCases"/>
+    <property name="tokens"
+            value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
+</module>
+<module name="AnnotationLocation">
+    <property name="id" value="AnnotationLocationVariables"/>
+    <property name="tokens" value="VARIABLE_DEF"/>
+    <property name="allowSamelineMultipleAnnotations" value="true"/>
+</module>
+```
+
+VIOLATION
+```java
+@Override @Nullable
+public String foo() {
+    return "bar";
+}
+
+@SuppressWarnings("deprecation") public String foo() {
+    return "bar";
+}
+```
+
+OK
+```java
+@Override
+@Nullable
+public String foo() {
+    return "bar";
+}
+
+@SuppressWarnings("deprecation")
+public String foo() {
+    return "bar";
+}
+
+// allow one single parameterless annotation on the same line
+@Override public String foo() {
+    return "bar";
+}
+
+@SuppressWarnings("deprecation") @Mock DataLoader loader;
+```
 
 ### [MissingOverride](https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride) (spymemcached)
 
-@inheritDoc이 부여된 메소드가 override 됐는지를 검사한다.
+@inheritDoc이 부여된 메소드가 override 됐는지를 검사.
 
 ```xml
 <module name="MissingOverride"/>
@@ -35,13 +98,11 @@ public void foo() {
 ```
 
 
-
-
 ## [Block Checks](https://checkstyle.sourceforge.io/config_blocks.html)
 
 ### [AvoidNestedBlocks](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) (spymemcached)
 
-nested block이 존재하는지 검사한다.
+nested block이 존재하는지 검사.
 
 ```xml
 <module name="AvoidNestedBlocks"/>
@@ -63,13 +124,13 @@ foo = 3;
 
 ### [EmptyBlock](https://checkstyle.sourceforge.io/config_blocks.html#EmptyBlock) (google, spymemcached)
 
-empty block이 존재하는지 검사한다.
+empty block이 존재하는지 검사.
 
 ```xml
 <module name="EmptyBlock">
     <property name="option" value="TEXT"/>
     <property name="tokens"
-                value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
+              value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
 </module>
 ```
 
@@ -88,10 +149,41 @@ if (foo != bar) {
 }
 ```
 
+### [EmptyCatchBlock](https://checkstyle.sourceforge.io/config_blocks.html#EmptyCatchBlock) (google)
+
+비어있는 catch block을 검사.
+
+```xml
+<module name="EmptyCatchBlock">
+    <property name="exceptionVariableName" value="expected"/>
+</module>
+```
+
+VIOLATION
+```java
+try {
+    throw new RuntimeException();
+} catch (RuntimeException e) {
+}
+```
+
+OK
+```java
+try {
+    throw new RuntimeException();
+} catch (RuntimeException expected) {
+}
+
+try {
+    throw new RuntimeException();
+} catch (RuntimeException e) {
+    e.printStackTrace();
+}
+```
 
 ### [LeftCurly](https://checkstyle.sourceforge.io/config_blocks.html#LeftCurly) (google, spymemcached)
 
-LeftCurly('{')의 줄바꿈을 검사한다.
+LeftCurly('{')의 줄바꿈을 검사.
 
 ```xml
 <module name="LeftCurly">
@@ -127,7 +219,7 @@ if (foo == bar) {
 
 ### [NeedBraces](https://checkstyle.sourceforge.io/config_blocks.html#NeedBraces) (google, spymemcached)
 
-brace('{', '}')가 존재하는지 검사한다.
+brace('{', '}')가 존재하는지 검사.
 
 ```xml
 <module name="NeedBraces">
@@ -155,7 +247,7 @@ if (foo == bar) {
 
 ### [RightCurly](https://checkstyle.sourceforge.io/config_blocks.html#RightCurly) (google, spymemcached)
 
-RightCurly('}')의 줄바꿈을 검사한다.
+RightCurly('}')의 줄바꿈을 검사.
 
 ```xml
 <module name="RightCurly">
@@ -187,7 +279,7 @@ if (foo == bar) {
 
 ### [FinalClass](https://checkstyle.sourceforge.io/config_design.html#FinalClass) (spymemcached)
 
-private 생성자를 가진 클래스의 modifier가 final인지를 검사한다.
+private 생성자를 가진 클래스의 modifier가 final인지를 검사.
 
 ```xml
 <module name="FinalClass"/>
@@ -211,7 +303,7 @@ final class Foo {
 
 ### [HideUtilityClassConstructor](https://checkstyle.sourceforge.io/config_design.html#HideUtilityClassConstructor) (spymemcached)
 
-static 메소드만 가지는 util 클래스의 생성자가 private인지를 검사한다.
+static 메소드만 가지는 util 클래스의 생성자가 private인지를 검사.
 
 ```xml
 <module name="HideUtilityClassConstructor"/>
@@ -237,7 +329,7 @@ class Util {
 
 ## [InterfaceIsType](https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType) (spymemcached)
 
-interface가 type으로 쓰이는지를 검사한다.
+interface가 type으로 쓰이는지를 검사.
 
 ```xml
 <module name="InterfaceIsType"/>
@@ -259,13 +351,41 @@ class Foo {
 }
 ```
 
+### [OneTopLevelClass](https://checkstyle.sourceforge.io/config_design.html#OneTopLevelClass) (google)
+
+하나의 파일에 두개 이상의 클래스를 정의했는지를 검사.
+
+```xml
+<module name="OneTopLevelClass"/>
+```
+
+VIOLATION
+```java
+// Parent.java
+class Parent {
+}
+class Child {
+}
+```
+
+OK
+```java
+// Parent.java
+class Parent {
+}
+
+// Child.java
+class Child {
+}
+```
+
 ## [VisibilityModifier](https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier) (spymemcached)
 
-클래스 멤버의 modifier가 private, protected 인지를 검사한다.
+클래스 멤버의 modifier가 private, protected 인지를 검사.
 
 ```xml
 <module name="VisibilityModifier">
-    <property name="protectedAllowed" value="true" />
+    <property name="protectedAllowed" value="true"/>
 </module>
 ```
 
@@ -290,10 +410,10 @@ protected int qux
 
 ### [DefaultComesLast](https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast) (spymemcached)
 
-switch에서 default 뒤에 case가 존재하는지 검사한다.
+switch에서 default 뒤에 case가 존재하는지 검사.
 
 ```xml
-<module name="DefaultComesLast" />
+<module name="DefaultComesLast"/>
 ```
 
 VIOLATION
@@ -340,7 +460,7 @@ if (foo == bar) {
 
 ### [EqualsHashCode](https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode) (spymemcached)
 
-equals 메소드를 override하면 hashcode 메소드도 override 했는지 검사한다.
+equals 메소드를 override하면 hashcode 메소드도 override 했는지 검사.
 
 ```xml
 <module name="EqualsHashCode"/>
@@ -371,9 +491,84 @@ class Foo {
 }
 ```
 
+
+### [FallThrough](https://checkstyle.sourceforge.io/config_coding.html#FallThrough) (google)
+
+switch-case에 fall through를 하는 곳에 `"falls?[ -]?thr(u|ough)"` 패턴의 주석이 존재하는지 검사.
+
+```xml
+<module name="FallThrough">
+    <property name="reliefPattern" value="falls?[ -]?thr(u|ough)"/>
+</module>
+```
+
+VIOLATION
+```java
+int i = 0;
+switch (i) {
+    case 0:
+        i++;
+    case 1:
+        i++;
+    case 2:
+    case 3: {
+        i++;
+    }
+    default:
+    break;
+}
+```
+
+OK
+```java
+int i = 0;
+switch (i) {
+    case 0:
+        i++;
+    // fall through
+    case 1:
+        i++;
+    // fall through
+    case 2:
+    case 3: {
+        i++;
+    }
+    // fall through
+    default:
+    break;
+}
+```
+
+
+### [IllegalTokenText](https://checkstyle.sourceforge.io/config_coding.html#IllegalTokenText) (google)
+
+escape sequence를 8진수, 유니코드로 표현했는지를 검사.
+
+```xml
+<module name="IllegalTokenText">
+    <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
+    <property name="format"
+              value="\\u00(09|0(a|A)|0(c|C)|0(d|D)|22|27|5(C|c))|\\(0(10|11|12|14|15|42|47)| 134)"/>
+    <property name="message"
+              value="Consider using special escape sequence instead of octal value or Unicode  escaped value."/>
+</module>
+```
+
+VIOLATION
+```java
+char tab = '\u0009';
+char octalTab = '\011';
+```
+
+OK
+```java
+char escapedSequenceTab = '\t';
+```
+
+
 ### [MissingSwitchDefault](https://checkstyle.sourceforge.io/config_coding.html#MissingSwitchDefault) (google, spymemcached)
 
-switch에서 default가 존재하는지 검사한다.
+switch에서 default가 존재하는지 검사.
 
 ```xml
 <module name="MissingSwitchDefault"/>
@@ -399,6 +594,104 @@ switch (i) {
     default:
         break;
 }
+```
+
+### [MultipleVariableDeclarations](https://checkstyle.sourceforge.io/config_coding.html#MultipleVariableDeclarations) (google)
+
+변수를 comma(',')를 사용하여 정의하였는지 검사.
+
+```xml
+<module name="MultipleVariableDeclarations"/>
+```
+
+VIOLATION
+```java
+int foo, bar, fooarray[];
+```
+
+OK
+```java
+int foo;
+int bar;
+int[] fooarray;
+```
+
+### [NoFinalizer](https://checkstyle.sourceforge.io/config_coding.html#NoFinalizer) (google)
+
+finalize 메소드를 override 했는지 검사.
+
+```xml
+<module name="NoFinalizer"/>
+```
+
+VIOLATION
+```java
+class Foo {
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+
+}
+```
+
+OK
+```java
+class Foo {
+}
+```
+
+### [OneStatementPerLine](https://checkstyle.sourceforge.io/config_coding.html#OneStatementPerLine) (google)
+
+한 라인에 다수의 statement가 존재하는지 검사.
+
+```xml
+<module name="OneStatementPerLine"/>
+```
+
+VIOLATION
+```java
+int var = 1, var2 = 2;
+foo++; bar++;
+```
+
+OK
+```java
+int var = 1
+int var2 = 2;
+var1++;
+var2++;
+```
+
+### [OverloadMethodsDeclarationOrder](https://checkstyle.sourceforge.io/config_coding.html#OverloadMethodsDeclarationOrder) (google)
+
+오버로드 메소드의 순서를 검사.
+
+```xml
+<module name="OverloadMethodsDeclarationOrder"/>
+```
+
+VIOLATION
+```java
+public void foo(int i) { }
+
+public void foo(String s) { }
+
+public void bar() { }
+
+public void foo(int i, String s) { }
+```
+
+OK
+```java
+public void foo(int i) { }
+
+public void foo(String s) { }
+
+public void foo(int i, String s) { }
+
+public void bar() { }
 ```
 
 ### [SimplifyBooleanExpression](https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression) (spymemcached)
@@ -457,7 +750,7 @@ if (foo.equals("bar")) {
 
 ### [SuperClone](https://checkstyle.sourceforge.io/config_coding.html#SuperClone) (spymemcached)
 
-부모의 clone() 호출을 검사한다.
+부모의 clone() 호출을 검사.
 
 ```xml
 <module name="SuperClone"/>
@@ -480,12 +773,42 @@ public Object clone throws CloneNotSUpportedException {
 }
 ```
 
+### [VariableDeclarationUsageDistance](https://checkstyle.sourceforge.io/config_coding.html#VariableDeclarationUsageDistance) (google)
+
+변수 정의와 변수 사용 사이의 거리가 3을 초과하지 않았는지를 검사.
+
+```xml
+<module name="VariableDeclarationUsageDistance">
+    <property name="allowedDistance" value="3"/>
+</module>
+```
+
+VIOLATION
+```java
+int foo = 0;
+int bar = 0;
+int baz;
+foo = foo + bar;  // foo distance is 3     : OK
+bar = foo + foo;  // bar distance is 3     : OK
+int qux;
+baz = bar;        // baz distance is 4     : VIOLATION
+```
+
+OK
+```java
+int foo = 0;
+int bar = 0;
+int baz;
+foo = foo + bar;  // foo distance is 3     : OK
+bar = foo + foo;  // bar distance is 3     : OK
+baz = bar;        // baz distance is 3     : OK
+```
 
 ## [Imports](https://checkstyle.sourceforge.io/config_imports.html)
 
 ### [AvoidStarImport](https://checkstyle.sourceforge.io/config_imports.html#AvoidStarImport) (google, spymemcached)
 
-star('*') import가 존재하는지 검사한다.
+star('*') import가 존재하는지 검사.
 
 ```xml
 <module name="AvoidStarImport"/>
@@ -501,27 +824,16 @@ OK
 import foo.bar.Baz;
 ```
 
-### [IllegalImport](https://checkstyle.sourceforge.io/config_imports.html#IllegalImport) (spymemcached)
+### [CustomImportOrder](https://checkstyle.sourceforge.io/config_imports.html#CustomImportOrder) (google)
 
-sun 패키지의 import가 존재하는지 검사한다.
-
-```xml
-<module name="IllegalImport"/>
-```
-
-VIOLATION
-```java
-import sun.management.counter.StringCounter;
-```
-
-### [ImportOrder](https://checkstyle.sourceforge.io/config_imports.html#UnusedImports) (spymemcached)
-
-import 순서를 검사한다.
+import 순서를 검사.
 
 ```xml
-<module name="ImportOrder">
-    <property name="ordered" value="true"/>
-    <property name="separated" value="true"/>
+<module name="CustomImportOrder">
+    <property name="sortImportsInGroupAlphabetically" value="true"/>
+    <property name="separateLineBetweenGroups" value="true"/>
+    <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
+    <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
 </module>
 ```
 
@@ -539,9 +851,22 @@ import java.util.List;
 import java.util.Map;
 ```
 
+### [IllegalImport](https://checkstyle.sourceforge.io/config_imports.html#IllegalImport) (spymemcached)
+
+sun 패키지의 import가 존재하는지 검사.
+
+```xml
+<module name="IllegalImport"/>
+```
+
+VIOLATION
+```java
+import sun.management.counter.StringCounter;
+```
+
 ### [RedundantImport](https://checkstyle.sourceforge.io/config_imports.html#RedundantImport) (spymemcached)
 
-java.lang, 중복, 현재 패키지의 import를 검사한다.
+java.lang, 중복, 현재 패키지의 import를 검사.
 
 ```xml
 <module name="RedundantImport"/>
@@ -558,7 +883,7 @@ import foo.Bar;            // same package
 
 ### [UnusedImports](https://checkstyle.sourceforge.io/config_imports.html#UnusedImports) (spymemcached)
 
-사용되지 않는 import를 검사한다.
+사용되지 않는 import를 검사.
 
 ```xml
 <module name="UnusedImports"/>
@@ -586,17 +911,206 @@ public class Foo {
 
 ## [Javadoc Comments](https://checkstyle.sourceforge.io/config_javadoc.html)
 
+### [AtclauseOrder](https://checkstyle.sourceforge.io/config_javadoc.html#AtclauseOrder) (google)
+
+tag 순서를 검사.
+
+1. @param
+2. @return
+3. @throws
+4. @deprecated
+
+```xml
+<module name="AtclauseOrder">
+    <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
+    <property name="target"
+              value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+</module>
+```
+
+VIOLATION
+```java
+/**
+ * @return bar string
+ * @param foo foo integer
+ * @param bar bar integer
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+OK
+```java
+/**
+ * @param foo foo integer
+ * @param bar bar integer
+ * @return bar string
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+### [JavadocMethod](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMethod) (google)
+
+@param, @return tag 생략이 가능하도록 함.
+
+```xml
+<module name="JavadocMethod">
+    <property name="scope" value="public"/>
+    <property name="allowMissingParamTags" value="true"/>
+    <property name="allowMissingReturnTag" value="true"/>
+    <property name="allowedAnnotations" value="Override, Test"/>
+    <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
+</module>
+```
+
+OK
+```java
+// allow missing @param, @return tag */
+/**
+ * This is foo method.
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+### [InvalidJavadocPosition](https://checkstyle.sourceforge.io/config_javadoc.html#InvalidJavadocPosition) (google)
+
+부적절한 javadoc의 위치를 검사.
+
+```xml
+<module name="InvalidJavadocPosition"/>
+```
+
+VIOLATION
+```java
+@SuppressWarnings("foo")
+/**
+ * This comment looks like javadoc but it at an invalid location.
+ * Therefore, the text will not get into Foo.html and the check will produce a violation.
+ */
+public class Foo {
+}
+```
+
+OK
+```java
+/**
+ * This comment looks like javadoc but it at an invalid location.
+ * Therefore, the text will not get into Foo.html and the check will produce a violation.
+ */
+@SuppressWarnings("foo")
+public class Foo {
+}
+```
+
+### [JavadocParagraph](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocParagraph) (google)
+
+paragraph(`<p>`) 태그를 검사.
+
+```xml
+<module name="JavadocParagraph"/>
+```
+
+VIOLATION
+```java
+/**
+ * No tag
+ *
+ * <p>Tag immediately before the text.
+ * <p>No blank line before the tag.
+ *
+ * <p>
+ * New line after tag.
+ *
+ * <p> Whitespace after tag.
+ */
+public class TestClass {
+}
+```
+
+OK
+```java
+/**
+ * No tag
+ *
+ * <p>Tag immediately before the text.
+ *
+ * <p>No blank line before the tag.
+ *
+ * <p>New line after tag.
+ *
+ * <p>Whitespace after tag.
+ */
+```
+
 ### [JavadocStyle](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocStyle) (spymemcached)
 
-적절하지 않거나 존재하지 않는 HTML 태그 사용 및 첫 문장에 마침표를 사용했는지 검사한다.
+적절하지 않거나 존재하지 않는 HTML 태그 사용 및 첫 문장에 마침표를 사용했는지 검사.
 
 ```xml
 <module name="JavadocStyle"/>
 ```
 
+VIOLATION
+```java
+/**
+ * This is Foo class
+ * <foo>This is Foo class</foo>
+ */
+class Foo {
+}
+```
+
+OK
+```java
+/**
+ * This is Foo class.
+ * <h1>This is Foo class</h1>
+ */
+class Foo {
+}
+```
+
+### [JavadocTagContinuationIndentation](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocTagContinuationIndentation) (google)
+
+indentation (4 spaces) 검사.
+
+```xml
+<module name="JavadocTagContinuationIndentation"/>
+```
+
+VIOLATION
+```java
+/**
+ * @param foo
+ *   foo integer
+ * @param bar
+ *   bar integer
+ * @return bar string
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+OK
+```java
+/**
+ * @param foo
+ *     foo integer
+ * @param bar
+ *     bar integer
+ * @return bar string
+ */
+```
+
 ### [JavadocType](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType) (spymemcached)
 
-public annotation/enum/class/interface에 JavaDoc이 존재하는지 검사한다.
+public annotation/enum/class/interface에 JavaDoc이 존재하는지 검사.
 
 ```xml
 <module name="JavadocType">
@@ -618,11 +1132,156 @@ OK
 class Foo { }
 ```
 
+### [MissingJavadocMethod](https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocMethod) (google)
+
+2라인을 넘어가는 메소드의 javadoc이 존재하는지 검사.
+
+```xml
+<module name="MissingJavadocMethod">
+    <property name="scope" value="public"/>
+    <property name="minLineCount" value="2"/>
+    <property name="allowedAnnotations" value="Override, Test"/>
+    <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
+</module>
+```
+
+VIOLATION
+```java
+public String foo(int foo, int bar) { // minLineCount is > 2
+    System.out.println("foo");
+    System.out.println("bar");
+    return "bar";
+}
+```
+
+OK
+```java
+/**
+ * This is foo method.
+ */
+public String foo(int foo, int bar) {
+    System.out.println("foo");
+    System.out.println("bar");
+    return "bar";
+}
+
+public String foo(int foo, int bar) { // minLineCount is <= 2
+    System.out.println("foo");
+    return "bar";
+}
+
+@Override
+public String foo(int foo, int bar) { // @Override, @Test is allowed
+    System.out.println("foo");
+    System.out.println("bar");
+    return "bar";
+}
+```
+
+### [NonEmptyAtclauseDescription](https://checkstyle.sourceforge.io/config_javadoc.html#NonEmptyAtclauseDescription) (google)
+
+@param, @return, @throws, @deprecated의 설명이 존재하는지 검사.
+
+```xml
+<module name="NonEmptyAtclauseDescription"/>
+```
+
+VIOLATION
+```java
+/**
+ * @param foo
+ * @param bar
+ * @return bar string
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+OK
+```java
+/**
+ * @param foo foo integer
+ * @param bar bar integer
+ * @return bar string
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
+
+### [SingleLineJavadoc](https://checkstyle.sourceforge.io/config_javadoc.html#SingleLineJavadoc) (google)
+
+단일 라인의 inline 태그가 존재하는지 검사.
+
+```xml
+<module name="SingleLineJavadoc">
+    <property name="ignoreInlineTags" value="false"/>
+</module>
+```
+
+VIOLATION
+```java
+/** Single line Javadoc that references {@link String}. */
+public void foo() { // not allowed inline tag. only allowed multi-line 
+}
+```
+
+OK
+```java
+/**
+ * Single line Javadoc that references {@link String}.
+ */
+public void foo() {
+}
+
+/** Single line Javadoc. */
+public void foo() {
+}
+```
+
+### [SummaryJavadoc](https://checkstyle.sourceforge.io/config_javadoc.html#SummaryJavadoc) (google)
+
+summary 첫 문장이 마침표로 끝나는지 검사.
+
+```xml
+<module name="SummaryJavadoc">
+    <property name="forbiddenSummaryFragments"
+              value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
+</module>
+```
+
+VIOLATION
+```java
+/**
+ * This is foo method
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+
+/**
+ *
+ */
+public String baz() {
+    return "qux";
+}
+```
+
+OK
+```java
+/**
+ * This is foo method.
+ */
+public String foo(int foo, int bar) {
+    return "bar";
+}
+```
 
 ## [Miscellaneous](https://checkstyle.sourceforge.io/config_misc.html)
 
 ### [ArrayTypeStyle](https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle) (google, spymemcached)
-배열 타입 스타일을 검사한다.
+배열 타입 스타일을 검사.
 
 ```xml
 <module name="ArrayTypeStyle"/>
@@ -636,6 +1295,67 @@ String foo[];
 OK
 ```java
 String[] foo;
+```
+
+### [AvoidEscapedUnicodeCharacters](https://checkstyle.sourceforge.io/config_misc.html#AvoidEscapedUnicodeCharacters) (google)
+
+유니코드를 사용했는지 검사.
+
+```xml
+<module name="AvoidEscapedUnicodeCharacters">
+    <property name="allowEscapesForControlCharacters" value="true"/>
+    <property name="allowByTailComment" value="true"/>
+    <property name="allowNonPrintableEscapes" value="true"/>
+</module>
+```
+
+VIOLATION
+```java
+String foo = "\u00B5"; // micro sign
+```
+
+OK
+```java
+String foo = "μs";     // micro sign
+
+// allowEscapesForControlCharacters
+String bar = "\u200E";
+// allow by allowByTailComment
+String baz = "\u03BCS"; // the reader has no idea what this is.
+// allow by allowNonPrintableEscapes */
+String qux = "\u0020";
+```
+
+### [CommentsIndentation](https://checkstyle.sourceforge.io/config_misc.html#CommentsIndentation) (google)
+
+주석의 indentation을 검사.
+
+```xml
+<module name="CommentsIndentation">
+    <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
+</module>
+```
+
+VIOLATION
+```java
+    /*
+    foo is true
+*/
+boolean foo = true;
+
+    // bar is true
+boolean bar = true;
+```
+
+OK
+```java
+/*
+    foo is true
+*/
+boolean foo = true;
+
+// bar is true
+boolean bar = true;
 ```
 
 ### [Indentation](https://checkstyle.sourceforge.io/config_misc.html#Indentation) (google, spymemcached)
@@ -733,7 +1453,7 @@ int[] foo = {
 
 ### [NewlineAtEndOfFile](https://checkstyle.sourceforge.io/config_misc.html#NewlineAtEndOfFile) (spymemcached)
 
-파일의 맨 끝에 newline('\n')이 존재하는지 검사한다.
+파일의 맨 끝에 newline('\n')이 존재하는지 검사.
 
 ```xml
 <module name="NewlineAtEndOfFile"/>
@@ -754,9 +1474,31 @@ OK
 4
 ```
 
+### [OuterTypeFilename](https://checkstyle.sourceforge.io/config_misc.html#OuterTypeFilename)
+
+파일 이름과 클래스명이 일치하는지 검사.
+
+```xml
+<module name="OuterTypeFilename"/>
+```
+
+VIOLATION
+```java
+// Foo.java
+class Bar {
+}
+```
+
+OK
+```java
+// Foo.java
+class Foo {
+}
+```
+
 ### [UpperEll](https://checkstyle.sourceforge.io/config_misc.html#UpperEll) (google, spymemcached)
 
-long을 'l'이 아닌 'L'로 표현하는지를 검사한다.
+long을 'l'이 아닌 'L'로 표현하는지를 검사.
 
 ```xml
 <module name="UpperEll"/>
@@ -776,7 +1518,7 @@ long value = 100L
 
 ### [ModifierOrder](https://checkstyle.sourceforge.io/config_modifier.html#ModifierOrder) (google, spymemcached)
 
-modifier 순서를 검사한다.
+modifier 순서를 검사.
 
 1. public
 2. protected
@@ -807,7 +1549,7 @@ public abstract void foo();
 
 ### [RedundantModifier](https://checkstyle.sourceforge.io/config_modifier.html#RedundantModifier) (spymemcached)
 
-불필요한 modifier를 검사한다.
+불필요한 modifier를 검사.
 
 ```xml
 <module name="RedundantModifier"/>
@@ -829,9 +1571,66 @@ public interface Foo {
 
 ## [Naming Conventions](https://checkstyle.sourceforge.io/config_naming.html)
 
+### [AbbreviationAsWordInName](https://checkstyle.sourceforge.io/config_naming.html#AbbreviationAsWordInName) (google)
+
+약어를 대문자로 표현했는지 검사.
+
+```xml
+<module name="AbbreviationAsWordInName">
+    <property name="ignoreFinal" value="false"/>
+    <property name="allowedAbbreviationLength" value="1"/>
+    <property name="tokens"
+              value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF,
+                     PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF"/>
+</module>
+```
+
+VIOLATION
+```java
+int firstFOO;
+int secondFOo;
+```
+
+OK
+```java
+int firstFoo;
+int secondFoo;
+String firstXML;    // abbreviation is allowed
+String firstURL;    // abbreviation is allowed
+```
+
+### [CatchParameterName](https://checkstyle.sourceforge.io/config_naming.html#CatchParameterName) (google)
+
+catch 파라미터의 이름을 검사. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야 한다.
+
+```xml
+<module name="CatchParameterName">
+    <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+    <message key="name.invalidPattern"
+             value="Catch parameter name ''{0}'' must match pattern ''{1}''."/>
+</module>
+```
+
+VIOLATION
+```java
+try {
+} catch (ArithmeticException Foo) {
+} catch (ArrayIndexOutOfBoundsException BAR2) {
+}
+```
+
+OK
+```java
+try {
+} catch (ArithmeticException foo) {
+} catch (ArrayIndexOutOfBoundsException bar2) {
+}
+```
+
+
 ### [ClassTypeParameterName](https://checkstyle.sourceforge.io/config_naming.html#ClassTypeParameterName) (google, spymemcached)
 
-클래스 제네릭 타입을 검사한다. `"(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"` 패턴과 일치해야한다.
+클래스 제네릭 타입을 검사. `"(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"` 패턴과 일치해야한다.
 
 ```xml
 <module name="ClassTypeParameterName">
@@ -853,7 +1652,7 @@ class MyClass<T> { }
 
 ### [ConstantName](https://checkstyle.sourceforge.io/config_naming.html#ConstantName) (spymemcached)
 
-static final 변수 이름을 검사한다. `"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"` 패턴과 일치해야 한다.
+static final 변수 이름을 검사. `"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"` 패턴과 일치해야 한다.
 
 ```xml
 <module name="ConstantName"/>
@@ -869,9 +1668,53 @@ OK
 public static final int FOO = 100;
 ```
 
+### [InterfaceTypeParameterName](https://checkstyle.sourceforge.io/config_naming.html#InterfaceTypeParameterName) (google)
+
+interface 타입 이름을 검사. `"(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"` 패턴과 일치해야 한다.
+
+```xml
+<module name="InterfaceTypeParameterName">
+    <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+    <message key="name.invalidPattern"
+             value="Interface type name ''{0}'' must match pattern ''{1}''."/>
+</module>
+```
+
+VIOLATION
+```java
+interface Foo<t> { }
+```
+
+OK
+```java
+interface Foo<T> { }
+```
+
+### [LambdaParameterName](https://checkstyle.sourceforge.io/config_naming.html#LambdaParameterName) (google)
+
+람다의 파라미터 이름을 검사. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야 한다.
+
+```xml
+<module name="LambdaParameterName">
+    <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+    <message key="name.invalidPattern"
+             value="Lambda parameter name ''{0}'' must match pattern ''{1}''."/>
+</module>
+```
+
+VIOLATION
+```java
+Function<String, String> foo = Bar -> Bar.toLowerCase();
+```
+
+OK
+```java
+Function<String, String> foo = bar -> bar.toLowerCase();
+```
+
 ### [LocalFinalVariableName](https://checkstyle.sourceforge.io/config_naming.html#LocalFinalVariableName) (spymemcached)
 
-지역 final 변수 이름을 검사한다. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
+지역 final 변수 이름을 검사. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="LocalFinalVariableName"/>
@@ -894,7 +1737,7 @@ public void foo() {
 
 ### [LocalVariableName](https://checkstyle.sourceforge.io/config_naming.html#LocalVariableName) (google, spymemcached)
 
-지역 변수 이름을 검사한다. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야한다.
+지역 변수 이름을 검사. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="LocalVariableName">
@@ -918,7 +1761,7 @@ int fooBar1;
 
 ### [MemberName](https://checkstyle.sourceforge.io/config_naming.html#MemberName) (google, spymemcached)
 
-클래스 멤버 이름을 검사한다. `"^[a-z][a-z0-9][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
+클래스 멤버 이름을 검사. `"^[a-z][a-z0-9][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="MemberName">
@@ -950,7 +1793,7 @@ static int foo6 = 0;
 
 ### [MethodName](https://checkstyle.sourceforge.io/config_naming.html#MethodName) (google, spymemcached)
 
-메소드 이름을 검사한다. `"^[a-z][a-z0-9][a-zA-Z0-9_]*$"` 패턴과 일치해야한다.
+메소드 이름을 검사. `"^[a-z][a-z0-9][a-zA-Z0-9_]*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="MethodName">
@@ -972,7 +1815,7 @@ void foo() { }
 
 ### [MethodTypeParameterName](https://checkstyle.sourceforge.io/config_naming.html#MethodTypeParameterName) (google, spymemcached)
 
-메소드 제네릭 타입 이름을 검사한다. `"(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"` 패턴과 일치해야한다.
+메소드 제네릭 타입 이름을 검사. `"(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"` 패턴과 일치해야한다.
 
 ```xml
 <module name="MethodTypeParameterName">
@@ -994,7 +1837,7 @@ public <T> void foo() { }
 
 ### [PackageName](https://checkstyle.sourceforge.io/config_naming.html#PackageName) (google, spymemcached)
 
-패키지 이름을 검사한다. `"^[a-z]+(\.[a-z][a-z0-9]*)*$"` 패턴과 일치해야한다.
+패키지 이름을 검사. `"^[a-z]+(\.[a-z][a-z0-9]*)*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="PackageName">
@@ -1021,7 +1864,7 @@ package foo.bar1.baz;
 
 ### [ParameterName](https://checkstyle.sourceforge.io/config_naming.html#ParameterName) (google, spymemcached)
 
-파라미터 이름을 검사한다. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야한다.
+파라미터 이름을 검사. `"^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="ParameterName">
@@ -1045,7 +1888,7 @@ void foo(int bar1) { }
 
 ### [StaticVariableName](https://checkstyle.sourceforge.io/config_naming.html#StaticVariableName) (spymemcached)
 
-static 변수 이름을 검사한다. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
+static 변수 이름을 검사. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="StaticVariableName"/>
@@ -1064,7 +1907,7 @@ static int foo = 300;
 
 ### [TypeName](https://checkstyle.sourceforge.io/config_naming.html#TypeName) (google, spymemcached)
 
-타입(class, interface, enum, annotation) 이름을 검사한다. `"^[A-Z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
+타입(class, interface, enum, annotation) 이름을 검사. `"^[A-Z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
 <module name="TypeName">
@@ -1090,7 +1933,7 @@ class MyClass { }
 
 ### [Regexp](https://checkstyle.sourceforge.io/config_regexp.html#Regexp) (spymemcached)
 
-라인 뒤에 공백(' ') 혹은 탭('\t') 문자가 존재하는지 검사한다.
+라인 뒤에 공백(' ') 혹은 탭('\t') 문자가 존재하는지 검사.
 
 ```xml
 <module name="Regexp">
@@ -1105,7 +1948,7 @@ class MyClass { }
 
 ### [FileLength](https://checkstyle.sourceforge.io/config_sizes.html#FileLength) (spymemcached)
 
-한 파일이 2500 라인을 초과했는지 검사한다.
+한 파일이 2500 라인을 초과했는지 검사.
 
 ```xml
 <module name="FileLength">
@@ -1115,7 +1958,7 @@ class MyClass { }
 
 ### [LineLength](https://checkstyle.sourceforge.io/config_sizes.html#LineLength) (google, spymemcached)
 
-한 라인에 100 캐릭터를 초과했는지 검사한다.
+한 라인에 100 캐릭터를 초과했는지 검사.
 
 ```xml
 <module name="LineLength">
@@ -1139,7 +1982,7 @@ String foo = "fooooooooooooooooo" +
 
 ### [MethodLength](https://checkstyle.sourceforge.io/config_sizes.html#MethodLength) (spymemcached)
 
-메소드가 150 라인을 초과했는지 검사한다.
+메소드가 150 라인을 초과했는지 검사.
 
 ```xml
 <module name="MethodLength"/>
@@ -1147,7 +1990,7 @@ String foo = "fooooooooooooooooo" +
 
 ### [ParameterNumber](https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber) (spymemcached)
 
-파라미터 개수가 10개를 초과했는지 검사한다.
+파라미터 개수가 10개를 초과했는지 검사.
 
 ```xml
 <module name="ParameterNumber">
@@ -1166,7 +2009,7 @@ void foo(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j) {
 
 ### [EmptyForIteratorPad](https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForIteratorPad) (spymemcached)
 
-for loop의 공백을 검사한다.
+for loop의 공백을 검사.
 
 ```xml
 <module name="EmptyForIteratorPad"/>
@@ -1188,9 +2031,50 @@ for (; foo < 100;) {
 }
 ```
 
+### [EmptyLineSeparator](https://checkstyle.sourceforge.io/config_whitespace.html#EmptyLineSeparator) (google)
+
+packge, import 등의 줄 바꿈을 검사.
+
+```xml
+<module name="EmptyLineSeparator">
+    <property name="tokens"
+              value="PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+                     STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+    <property name="allowNoEmptyLineBetweenFields" value="true"/>
+</module>
+```
+
+VIOLATION
+```java
+package foo.bar.baz;
+import foo.bar.baz.Qux;
+
+public class Foo {
+    public static void main(String[] args) {
+    }
+    public static void bar() {
+    }
+}
+```
+
+OK
+```java
+package foo.bar.baz;
+
+import foo.bar.baz.Qux;
+
+public class Foo {
+    public static void main(String[] args) {
+    }
+
+    public static void bar() {
+    }
+}
+```
+
 ### [FileTabCharacter](https://checkstyle.sourceforge.io/config_whitespace.html#FileTabCharacter) (google, spymemcached)
 
-탭('\t') 문자가 존재하는지 검사한다.
+탭('\t') 문자가 존재하는지 검사.
 
 ```xml
 <module name="FileTabCharacter">
@@ -1200,18 +2084,18 @@ for (; foo < 100;) {
 
 ### [GenericWhiteSpace](https://checkstyle.sourceforge.io/config_whitespace.html#GenericWhitespace) (google, spymemcached)
 
-제네릭의 공백 규칙을 검사한다.
+제네릭의 공백 규칙을 검사.
 
 ```xml
 <module name="GenericWhitespace">
     <message key="ws.followed"
-                value="GenericWhitespace ''{0}'' is followed by whitespace."/>
+             value="GenericWhitespace ''{0}'' is followed by whitespace."/>
     <message key="ws.preceded"
-                value="GenericWhitespace ''{0}'' is preceded with whitespace."/>
+             value="GenericWhitespace ''{0}'' is preceded with whitespace."/>
     <message key="ws.illegalFollow"
-                value="GenericWhitespace ''{0}'' should followed by whitespace."/>
+             value="GenericWhitespace ''{0}'' should followed by whitespace."/>
     <message key="ws.notPreceded"
-                value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
+             value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
 </module>
 ```
 
@@ -1238,13 +2122,13 @@ public <X, Y> X bar(X x, Y y) {
 
 ### [MethodParamPad](https://checkstyle.sourceforge.io/config_whitespace.html#MethodParamPad) (google, spymemcached)
 
-메소드와 파라미터 사이의 공백을 검사한다.
+메소드와 파라미터 사이의 공백을 검사.
 
 ```xml
 <module name="MethodParamPad">
     <property name="tokens"
-                value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
-                        SUPER_CTOR_CALL, ENUM_CONSTANT_DEF"/>
+              value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
+                     SUPER_CTOR_CALL, ENUM_CONSTANT_DEF"/>
 </module>
 ```
 
@@ -1264,9 +2148,37 @@ public void foo(int bar) {
 }
 ```
 
+### [NoLineWrap](https://checkstyle.sourceforge.io/config_whitespace.html#NoLineWrap) (google)
+
+import의 줄바꿈을 검사.
+
+```xml
+<module name="NoLineWrap">
+    <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
+</module>
+```
+
+VIOLATION
+```java
+package foo.bar.
+        baz.qux;
+import foo.bar.
+        baz.Qux;
+import static foo.bar.
+        Baz.QUX;
+```
+
+OK
+```java
+package foo.bar.baz.qux;
+import foo.bar.baz.Qux;
+import static foo.bar.Baz.QUX;
+```
+
+
 ### [NoWhitespaceAfter](https://checkstyle.sourceforge.io/config_whitespace.html#NoWhitespaceAfter) (spymemcached)
 
-토큰 뒤의 공백을 검사한다.
+토큰 뒤의 공백을 검사.
 
 ```xml
 <module name="NoWhitespaceAfter"/>
@@ -1288,7 +2200,7 @@ if (!foo) {
 
 ### [NoWhitespaceBefore](https://checkstyle.sourceforge.io/config_whitespace.html#NoWhitespaceBefore) (google, spymemcached)
 
-토큰 앞의 공백을 검사한다.
+토큰 앞의 공백을 검사.
 
 ```xml
 <module name="NoWhitespaceBefore">
@@ -1315,14 +2227,14 @@ this.bar(1, 2, 3);
 
 ### [OperatorWrap](https://checkstyle.sourceforge.io/config_whitespace.html#OperatorWrap) (google, spymemcached)
 
-연산자의 줄바꿈을 검사한다.
+연산자의 줄바꿈을 검사.
 
 ```xml
 <module name="OperatorWrap">
     <property name="option" value="NL"/>
     <property name="tokens"
-              value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,
-                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF "/>
+              value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF,   
+                     LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF"/>
 </module>
 ```
 
@@ -1350,16 +2262,16 @@ if ((bar == baz)
         
 ### [ParenPad](https://checkstyle.sourceforge.io/config_whitespace.html#ParenPad) (google, spymemcached)
 
-괄호 사이의 공백을 검사한다.
+괄호 사이의 공백을 검사.
 
 ```xml
 <module name="ParenPad">
     <property name="tokens"
-                value="ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT,          
-                       ENUM_CONSTANT_DEF,
-                       EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW,
-                       LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL,
-                       METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA"/>
+              value="ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT,          
+                     ENUM_CONSTANT_DEF,
+                     EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW,
+                     LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL,
+                     METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA"/>
 </module>
 ```
 
@@ -1375,9 +2287,137 @@ new String("foo");
 this.bar("bar");
 ```
 
+### [SeparatorWrap](https://checkstyle.sourceforge.io/config_whitespace.html#SeparatorWrap) (google)
+
+dot('.')이 개행문자 뒤에 존재하는지 검사.
+
+```xml
+<module name="SeparatorWrap">
+    <property name="id" value="SeparatorWrapDot"/>
+    <property name="tokens" value="DOT"/>
+    <property name="option" value="nl"/>
+</module>
+```
+
+VIOLATION
+```java
+new Foo().
+    bar(null).
+    baz();
+```
+
+OK
+```java
+new Foo()
+    .bar(null)
+    .baz();
+```
+
+comma가 개행문자 앞에 존재하는지 검사.
+
+```xml
+<module name="SeparatorWrap">
+    <property name="id" value="SeparatorWrapComma"/>
+    <property name="tokens" value="COMMA"/>
+    <property name="option" value="EOL"/>
+</module>
+```
+
+VIOLATION
+```java
+System.out.printf(
+    "%d %d %d"
+    ,1
+    ,2
+    ,3
+);
+```
+
+OK
+```java
+System.out.printf(
+    "%d %d %d",
+    1,
+    2,
+    3
+);
+```
+
+ellipsis('...')가 개행문자 앞에 존재하는지 검사.
+
+```xml
+<module name="SeparatorWrap">
+    <property name="id" value="SeparatorWrapEllipsis"/>
+    <property name="tokens" value="ELLIPSIS"/>
+    <property name="option" value="EOL"/>
+</module>
+```
+
+VIOLATION
+```java
+public static void printf(
+    String
+        arg1,
+    Object
+        ...arg2) { }
+```
+
+OK
+```java
+public static void printf(
+    String
+        arg1,
+    Object...
+        arg2) { }
+```
+
+배열 선언 문자('[', ']')가 개행문자 앞에 존재하는지 검사.
+
+```xml
+<module name="SeparatorWrap">
+    <property name="id" value="SeparatorWrapArrayDeclarator"/>
+    <property name="tokens" value="ARRAY_DECLARATOR"/>
+    <property name="option" value="EOL"/>
+</module>
+```
+
+VIOLATION
+```java
+int
+    []array;
+```
+
+OK
+```java
+int[]
+    array;
+```
+
+메소드 참조('::') 문자가 개행문자 뒤에 존재하는지 검사.
+
+```xml
+<module name="SeparatorWrap">
+    <property name="id" value="SeparatorWrapMethodRef"/>
+    <property name="tokens" value="METHOD_REF"/>
+    <property name="option" value="nl"/>
+</module>
+```
+
+VIOLATION
+```java
+Arrays.sort(stringArray, String::
+    compareToIgnoreCase);
+```
+
+OK
+```java
+Arrays.sort(stringArray, String
+    ::compareToIgnoreCase);
+```
+
 ### [TypecastParenPad](https://checkstyle.sourceforge.io/config_whitespace.html#TypecastParenPad) (spymemcached)
 
-타입 변환 괄호 사이의 공백을 검사한다.
+타입 변환 괄호 사이의 공백을 검사.
 
 ```xml
 <module name="TypecastParenPad"/>
@@ -1395,7 +2435,7 @@ foo = (String) bar;
 
 ### [WhitespaceAfter](https://checkstyle.sourceforge.io/config_whitespace.html#WhitespaceAfter) (spymemcached)
 
-comma(','), semi-colon(';') 뒤의 공백을 검사한다.
+comma(','), semi-colon(';') 뒤의 공백을 검사.
 
 ```xml
 <module name="WhitespaceAfter">
@@ -1404,6 +2444,7 @@ comma(','), semi-colon(';') 뒤의 공백을 검사한다.
 ```
 
 VIOLATION
+
 ```java
 void foo(int bar,int baz) {
 }
@@ -1413,4 +2454,58 @@ OK
 ```java
 void foo(int bar, int baz) {
 }
+```
+
+### [WhitespaceAround](https://checkstyle.sourceforge.io/config_whitespace.html#WhitespaceAround) (google)
+
+token 사이에 공백이 존재하는지 검사.
+
+```xml
+<module name="WhitespaceAround">
+    <property name="allowEmptyConstructors" value="true"/>
+    <property name="allowEmptyLambdas" value="true"/>
+    <property name="allowEmptyMethods" value="false"/>
+    <property name="allowEmptyTypes" value="true"/>
+    <property name="allowEmptyLoops" value="true"/>
+    <property name="tokens"
+              value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, 
+                     BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, 
+                     GE, GT, LAMBDA, LAND,LCURLY, LE, LITERAL_CATCH, LITERAL_DO, 
+                     LITERAL_ELSE, LITERAL_FINALLY,LITERAL_FOR, LITERAL_IF, 
+                     LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED,
+                     LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, 
+                     MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, 
+                     RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, 
+                     STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND"/>
+    <message key="ws.notFollowed"
+             value="WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>
+    <message key="ws.notPreceded"
+             value="WhitespaceAround: ''{0}'' is not preceded with whitespace."/>
+</module>
+```
+
+VIOLATION
+```java
+boolean result = foo==bar;     // '==' must preceded and followed whitespace
+
+while(true) {}                // 'while' must followed by whitespace
+
+if(foo == bar) { }            // 'if' is not followed by whitespace
+
+System.out.println(foo+bar);  // '+' must preceded and followed whitespace
+
+synchronized(this) {}         // 'synchronized' must followed by whitespace
+```
+
+OK
+```java
+boolean result = foo == bar;
+
+while (true) {}
+
+if (foo == bar) { }
+
+System.out.println(foo + bar);
+
+synchronized (this) {}
 ```
