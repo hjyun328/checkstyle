@@ -6,19 +6,19 @@
 
 
 Link
-- [File Filters](CHECKSTYLE.md#File%20Filters)
+- [File Filters](CHECKSTYLE.md#File-Filters)
     - [BeforeExecutionExclusionFileFilter](CHECKSTYLE.md#BeforeExecutionExclusionFileFilter)
 - [Annotations](CHECKSTYLE.md#Annotations)
     - [AnnotationLocation](CHECKSTYLE.md#AnnotationLocation)
     - [MissingOverride](CHECKSTYLE.md#MissingOverride)
-- [Block Checks](CHECKSTYLE.md#Block%20Checks)
+- [Block Checks](CHECKSTYLE.md#Block-Checks)
     - [AvoidNestedBlocks](CHECKSTYLE.md#AvoidNestedBlocks)
     - [EmptyBlock](CHECKSTYLE.md#EmptyBlock)
     - [EmptyCatchBlock](CHECKSTYLE.md#EmptyCatchBlock)
     - [LeftCurly](CHECKSTYLE.md#LeftCurly)
     - [NeedBraces](CHECKSTYLE.md#NeedBraces)
     - [RightCurly](CHECKSTYLE.md#RightCurly)
-- [Class Design](CHECKSTYLE.md#Class%20Design)
+- [Class Design](CHECKSTYLE.md#Class-Design)
     - [FinalClass](CHECKSTYLE.md#FinalClass)
     - [HideUtilityClassConstructor](CHECKSTYLE.md#HideUtilityClassConstructor)
     - [InterfaceIsType](CHECKSTYLE.md#InterfaceIsType)
@@ -46,7 +46,7 @@ Link
     - [IllegalImport](CHECKSTYLE.md#IllegalImport)
     - [RedundantImport](CHECKSTYLE.md#RedundantImport)
     - [UnusedImports](CHECKSTYLE.md#UnusedImports)
-- [Javadoc Comments](CHECKSTYLE.md#Javadoc%20Comments)
+- [Javadoc Comments](CHECKSTYLE.md#Javadoc-Comments)
     - [AtclauseOrder](CHECKSTYLE.md#AtclauseOrder)
     - [JavadocMethod](CHECKSTYLE.md#JavadocMethod)
     - [InvalidJavadocPosition](CHECKSTYLE.md#InvalidJavadocPosition)
@@ -69,7 +69,7 @@ Link
 - [Modifier](CHECKSTYLE.md#Modifier)
     - [ModifierOrder](CHECKSTYLE.md#ModifierOrder)
     - [RedundantModifier](CHECKSTYLE.md#RedundantModifier)
-- [Naming Conventions](CHECKSTYLE.md#Naming%20Conventions)
+- [Naming Conventions](CHECKSTYLE.md#Naming-Conventions)
     - [AbbreviationAsWordInName](CHECKSTYLE.md#AbbreviationAsWordInName)
     - [CatchParameterName](CHECKSTYLE.md#CatchParameterName)
     - [ClassTypeParameterName](CHECKSTYLE.md#ClassTypeParameterName)
@@ -87,7 +87,7 @@ Link
     - [TypeName](CHECKSTYLE.md#TypeName)
 - [Regexp](CHECKSTYLE.md#Regexp)
     - [Regexp](CHECKSTYLE.md#Regexp)
-- [Size Violations](CHECKSTYLE.md#Size%20Violations)
+- [Size Violations](CHECKSTYLE.md#Size-Violations)
     - [FileLength](CHECKSTYLE.md#FileLength)
     - [LineLength](CHECKSTYLE.md#LineLength)
     - [MethodLength](CHECKSTYLE.md#MethodLength)
@@ -109,7 +109,7 @@ Link
     - [WhitespaceAround](CHECKSTYLE.md#WhitespaceAround)
 
 
-## [FileFilters](https://checkstyle.sourceforge.io/config_filefilters.html)
+## [File Filters](https://checkstyle.sourceforge.io/config_filefilters.html)
 
 ### [BeforeExecutionExclusionFileFilter](https://checkstyle.sourceforge.io/config_filefilters.html#BeforeExecutionExclusionFileFilter)
 
