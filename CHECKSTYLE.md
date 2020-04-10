@@ -1,112 +1,112 @@
 # Checkstyle
 
 [Checkstyle](https://checkstyle.sourceforge.io/)에서 제공되는 모듈 내용을 정리한다.
-- [Google Checkstyle](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
-- [Spymemcached Checkstyle](https://github.com/couchbase/spymemcached/blob/master/etc/checkstyle.xml)
+- [Google Checkstyle 8.31](https://github.com/checkstyle/checkstyle/blob/checkstyle-8.31/src/main/resources/google_checks.xml)
+- [Spymemcached Checkstyle 2.12.3](https://github.com/couchbase/spymemcached/blob/2.12.3/etc/checkstyle.xml)
 
 
 Link
-- [File Filters](CHECKSTYLE.md#File-Filters)
-    - [BeforeExecutionExclusionFileFilter](CHECKSTYLE.md#BeforeExecutionExclusionFileFilter)
-- [Annotations](CHECKSTYLE.md#Annotations)
-    - [AnnotationLocation](CHECKSTYLE.md#AnnotationLocation)
-    - [MissingOverride](CHECKSTYLE.md#MissingOverride)
-- [Block Checks](CHECKSTYLE.md#Block-Checks)
-    - [AvoidNestedBlocks](CHECKSTYLE.md#AvoidNestedBlocks)
-    - [EmptyBlock](CHECKSTYLE.md#EmptyBlock)
-    - [EmptyCatchBlock](CHECKSTYLE.md#EmptyCatchBlock)
-    - [LeftCurly](CHECKSTYLE.md#LeftCurly)
-    - [NeedBraces](CHECKSTYLE.md#NeedBraces)
-    - [RightCurly](CHECKSTYLE.md#RightCurly)
-- [Class Design](CHECKSTYLE.md#Class-Design)
-    - [FinalClass](CHECKSTYLE.md#FinalClass)
-    - [HideUtilityClassConstructor](CHECKSTYLE.md#HideUtilityClassConstructor)
-    - [InterfaceIsType](CHECKSTYLE.md#InterfaceIsType)
-    - [OneTopLevelClass](CHECKSTYLE.md#OneTopLevelClass)
-    - [VisibilityModifier](CHECKSTYLE.md#VisibilityModifier)
-- [Coding](CHECKSTYLE.md#Coding)
-    - [DefaultComesLast](CHECKSTYLE.md#DefaultComesLast)
-    - [EmptyStatement](CHECKSTYLE.md#EmptyStatement)
-    - [EqualsHashCode](CHECKSTYLE.md#EqualsHashCode)
-    - [FallThrough](CHECKSTYLE.md#FallThrough)
-    - [IllegalTokenText](CHECKSTYLE.md#IllegalTokenText)
-    - [MissingSwitchDefault](CHECKSTYLE.md#MissingSwitchDefault)
-    - [MultipleVariableDeclarations](CHECKSTYLE.md#MultipleVariableDeclarations)
-    - [NoFinalizer](CHECKSTYLE.md#NoFinalizer)
-    - [OneStatementPerLine](CHECKSTYLE.md#OneStatementPerLine)
-    - [OverloadMethodsDeclarationOrder](CHECKSTYLE.md#OverloadMethodsDeclarationOrder)
-    - [SimplifyBooleanExpression](CHECKSTYLE.md#SimplifyBooleanExpression)
-    - [SimplifyBooleanReturn](CHECKSTYLE.md#SimplifyBooleanReturn)
-    - [StringLiteralEquality](CHECKSTYLE.md#StringLiteralEquality)
-    - [SuperClone](CHECKSTYLE.md#SuperClone)
-    - [VariableDeclarationUsageDistance](CHECKSTYLE.md#VariableDeclarationUsageDistance)
-- [Imports](CHECKSTYLE.md#Imports)
-    - [AvoidStarImport](CHECKSTYLE.md#AvoidStarImport)
-    - [CustomImportOrder](CHECKSTYLE.md#CustomImportOrder)
-    - [IllegalImport](CHECKSTYLE.md#IllegalImport)
-    - [RedundantImport](CHECKSTYLE.md#RedundantImport)
-    - [UnusedImports](CHECKSTYLE.md#UnusedImports)
-- [Javadoc Comments](CHECKSTYLE.md#Javadoc-Comments)
-    - [AtclauseOrder](CHECKSTYLE.md#AtclauseOrder)
-    - [JavadocMethod](CHECKSTYLE.md#JavadocMethod)
-    - [InvalidJavadocPosition](CHECKSTYLE.md#InvalidJavadocPosition)
-    - [JavadocParagraph](CHECKSTYLE.md#JavadocParagraph)
-    - [JavadocStyle](CHECKSTYLE.md#JavadocStyle)
-    - [JavadocTagContinuationIndentation](CHECKSTYLE.md#JavadocTagContinuationIndentation)
-    - [JavadocType](CHECKSTYLE.md#JavadocType)
-    - [MissingJavadocMethod](CHECKSTYLE.md#MissingJavadocMethod)
-    - [NonEmptyAtclauseDescription](CHECKSTYLE.md#NonEmptyAtclauseDescription)
-    - [SingleLineJavadoc](CHECKSTYLE.md#SingleLineJavadoc)
-    - [SummaryJavadoc](CHECKSTYLE.md#SummaryJavadoc)
-- [Miscellaneous](CHECKSTYLE.md#Miscellaneous)
-    - [ArrayTypeStyle](CHECKSTYLE.md#ArrayTypeStyle)
-    - [AvoidEscapedUnicodeCharacters](CHECKSTYLE.md#AvoidEscapedUnicodeCharacters)
-    - [CommentsIndentation](CHECKSTYLE.md#CommentsIndentation)
-    - [Indentation](CHECKSTYLE.md#Indentation)
-    - [NewlineAtEndOfFile](CHECKSTYLE.md#NewlineAtEndOfFile)
-    - [OuterTypeFilename](CHECKSTYLE.md#OuterTypeFilename)
-    - [UpperEll](CHECKSTYLE.md#UpperEll)
-- [Modifier](CHECKSTYLE.md#Modifier)
-    - [ModifierOrder](CHECKSTYLE.md#ModifierOrder)
-    - [RedundantModifier](CHECKSTYLE.md#RedundantModifier)
-- [Naming Conventions](CHECKSTYLE.md#Naming-Conventions)
-    - [AbbreviationAsWordInName](CHECKSTYLE.md#AbbreviationAsWordInName)
-    - [CatchParameterName](CHECKSTYLE.md#CatchParameterName)
-    - [ClassTypeParameterName](CHECKSTYLE.md#ClassTypeParameterName)
-    - [ConstantName](CHECKSTYLE.md#ConstantName)
-    - [InterfaceTypeParameterName](CHECKSTYLE.md#InterfaceTypeParameterName)
-    - [LambdaParameterName](CHECKSTYLE.md#LambdaParameterName)
-    - [LocalFinalVariableName](CHECKSTYLE.md#LocalFinalVariableName)
-    - [LocalVariableName](CHECKSTYLE.md#LocalVariableName)
-    - [MemberName](CHECKSTYLE.md#MemberName)
-    - [MethodName](CHECKSTYLE.md#MethodName)
-    - [MethodTypeParameterName](CHECKSTYLE.md#MethodTypeParameterName)
-    - [PackageName](CHECKSTYLE.md#PackageName)
-    - [ParameterName](CHECKSTYLE.md#ParameterName)
-    - [StaticVariableName](CHECKSTYLE.md#StaticVariableName)
-    - [TypeName](CHECKSTYLE.md#TypeName)
-- [Regexp](CHECKSTYLE.md#Regexp)
-    - [Regexp](CHECKSTYLE.md#Regexp)
-- [Size Violations](CHECKSTYLE.md#Size-Violations)
-    - [FileLength](CHECKSTYLE.md#FileLength)
-    - [LineLength](CHECKSTYLE.md#LineLength)
-    - [MethodLength](CHECKSTYLE.md#MethodLength)
-    - [ParameterNumber](CHECKSTYLE.md#ParameterNumber)
-- [Whitespace](CHECKSTYLE.md#Whitespace)
-    - [EmptyForIteratorPad](CHECKSTYLE.md#EmptyForIteratorPad)
-    - [EmptyLineSeparator](CHECKSTYLE.md#EmptyLineSeparator)
-    - [FileTabCharacter](CHECKSTYLE.md#FileTabCharacter)
-    - [GenericWhiteSpace](CHECKSTYLE.md#GenericWhiteSpace)
-    - [MethodParamPad](CHECKSTYLE.md#MethodParamPad)
-    - [NoLineWrap](CHECKSTYLE.md#NoLineWrap)
-    - [NoWhitespaceAfter](CHECKSTYLE.md#NoWhitespaceAfter)
-    - [NoWhitespaceBefore](CHECKSTYLE.md#NoWhitespaceBefore)
-    - [OperatorWrap](CHECKSTYLE.md#OperatorWrap)
-    - [ParenPad](CHECKSTYLE.md#ParenPad)
-    - [SeparatorWrap](CHECKSTYLE.md#SeparatorWrap)
-    - [TypecastParenPad](CHECKSTYLE.md#TypecastParenPad)
-    - [WhitespaceAfter](CHECKSTYLE.md#WhitespaceAfter)
-    - [WhitespaceAround](CHECKSTYLE.md#WhitespaceAround)
+- [File Filters](javacheckstyle.md#File-Filters)
+    - [BeforeExecutionExclusionFileFilter](javacheckstyle.md#BeforeExecutionExclusionFileFilter)
+- [Annotations](javacheckstyle.md#Annotations)
+    - [AnnotationLocation](javacheckstyle.md#AnnotationLocation)
+    - [MissingOverride](javacheckstyle.md#MissingOverride)
+- [Block Checks](javacheckstyle.md#Block-Checks)
+    - [AvoidNestedBlocks](javacheckstyle.md#AvoidNestedBlocks)
+    - [EmptyBlock](javacheckstyle.md#EmptyBlock)
+    - [EmptyCatchBlock](javacheckstyle.md#EmptyCatchBlock)
+    - [LeftCurly](javacheckstyle.md#LeftCurly)
+    - [NeedBraces](javacheckstyle.md#NeedBraces)
+    - [RightCurly](javacheckstyle.md#RightCurly)
+- [Class Design](javacheckstyle.md#Class-Design)
+    - [FinalClass](javacheckstyle.md#FinalClass)
+    - [HideUtilityClassConstructor](javacheckstyle.md#HideUtilityClassConstructor)
+    - [InterfaceIsType](javacheckstyle.md#InterfaceIsType)
+    - [OneTopLevelClass](javacheckstyle.md#OneTopLevelClass)
+    - [VisibilityModifier](javacheckstyle.md#VisibilityModifier)
+- [Coding](javacheckstyle.md#Coding)
+    - [DefaultComesLast](javacheckstyle.md#DefaultComesLast)
+    - [EmptyStatement](javacheckstyle.md#EmptyStatement)
+    - [EqualsHashCode](javacheckstyle.md#EqualsHashCode)
+    - [FallThrough](javacheckstyle.md#FallThrough)
+    - [IllegalTokenText](javacheckstyle.md#IllegalTokenText)
+    - [MissingSwitchDefault](javacheckstyle.md#MissingSwitchDefault)
+    - [MultipleVariableDeclarations](javacheckstyle.md#MultipleVariableDeclarations)
+    - [NoFinalizer](javacheckstyle.md#NoFinalizer)
+    - [OneStatementPerLine](javacheckstyle.md#OneStatementPerLine)
+    - [OverloadMethodsDeclarationOrder](javacheckstyle.md#OverloadMethodsDeclarationOrder)
+    - [SimplifyBooleanExpression](javacheckstyle.md#SimplifyBooleanExpression)
+    - [SimplifyBooleanReturn](javacheckstyle.md#SimplifyBooleanReturn)
+    - [StringLiteralEquality](javacheckstyle.md#StringLiteralEquality)
+    - [SuperClone](javacheckstyle.md#SuperClone)
+    - [VariableDeclarationUsageDistance](javacheckstyle.md#VariableDeclarationUsageDistance)
+- [Imports](javacheckstyle.md#Imports)
+    - [AvoidStarImport](javacheckstyle.md#AvoidStarImport)
+    - [CustomImportOrder](javacheckstyle.md#CustomImportOrder)
+    - [IllegalImport](javacheckstyle.md#IllegalImport)
+    - [RedundantImport](javacheckstyle.md#RedundantImport)
+    - [UnusedImports](javacheckstyle.md#UnusedImports)
+- [Javadoc Comments](javacheckstyle.md#Javadoc-Comments)
+    - [AtclauseOrder](javacheckstyle.md#AtclauseOrder)
+    - [JavadocMethod](javacheckstyle.md#JavadocMethod)
+    - [InvalidJavadocPosition](javacheckstyle.md#InvalidJavadocPosition)
+    - [JavadocParagraph](javacheckstyle.md#JavadocParagraph)
+    - [JavadocStyle](javacheckstyle.md#JavadocStyle)
+    - [JavadocTagContinuationIndentation](javacheckstyle.md#JavadocTagContinuationIndentation)
+    - [JavadocType](javacheckstyle.md#JavadocType)
+    - [MissingJavadocMethod](javacheckstyle.md#MissingJavadocMethod)
+    - [NonEmptyAtclauseDescription](javacheckstyle.md#NonEmptyAtclauseDescription)
+    - [SingleLineJavadoc](javacheckstyle.md#SingleLineJavadoc)
+    - [SummaryJavadoc](javacheckstyle.md#SummaryJavadoc)
+- [Miscellaneous](javacheckstyle.md#Miscellaneous)
+    - [ArrayTypeStyle](javacheckstyle.md#ArrayTypeStyle)
+    - [AvoidEscapedUnicodeCharacters](javacheckstyle.md#AvoidEscapedUnicodeCharacters)
+    - [CommentsIndentation](javacheckstyle.md#CommentsIndentation)
+    - [Indentation](javacheckstyle.md#Indentation)
+    - [NewlineAtEndOfFile](javacheckstyle.md#NewlineAtEndOfFile)
+    - [OuterTypeFilename](javacheckstyle.md#OuterTypeFilename)
+    - [UpperEll](javacheckstyle.md#UpperEll)
+- [Modifier](javacheckstyle.md#Modifier)
+    - [ModifierOrder](javacheckstyle.md#ModifierOrder)
+    - [RedundantModifier](javacheckstyle.md#RedundantModifier)
+- [Naming Conventions](javacheckstyle.md#Naming-Conventions)
+    - [AbbreviationAsWordInName](javacheckstyle.md#AbbreviationAsWordInName)
+    - [CatchParameterName](javacheckstyle.md#CatchParameterName)
+    - [ClassTypeParameterName](javacheckstyle.md#ClassTypeParameterName)
+    - [ConstantName](javacheckstyle.md#ConstantName)
+    - [InterfaceTypeParameterName](javacheckstyle.md#InterfaceTypeParameterName)
+    - [LambdaParameterName](javacheckstyle.md#LambdaParameterName)
+    - [LocalFinalVariableName](javacheckstyle.md#LocalFinalVariableName)
+    - [LocalVariableName](javacheckstyle.md#LocalVariableName)
+    - [MemberName](javacheckstyle.md#MemberName)
+    - [MethodName](javacheckstyle.md#MethodName)
+    - [MethodTypeParameterName](javacheckstyle.md#MethodTypeParameterName)
+    - [PackageName](javacheckstyle.md#PackageName)
+    - [ParameterName](javacheckstyle.md#ParameterName)
+    - [StaticVariableName](javacheckstyle.md#StaticVariableName)
+    - [TypeName](javacheckstyle.md#TypeName)
+- [Regexp](javacheckstyle.md#Regexp)
+    - [Regexp](javacheckstyle.md#Regexp)
+- [Size Violations](javacheckstyle.md#Size-Violations)
+    - [FileLength](javacheckstyle.md#FileLength)
+    - [LineLength](javacheckstyle.md#LineLength)
+    - [MethodLength](javacheckstyle.md#MethodLength)
+    - [ParameterNumber](javacheckstyle.md#ParameterNumber)
+- [Whitespace](javacheckstyle.md#Whitespace)
+    - [EmptyForIteratorPad](javacheckstyle.md#EmptyForIteratorPad)
+    - [EmptyLineSeparator](javacheckstyle.md#EmptyLineSeparator)
+    - [FileTabCharacter](javacheckstyle.md#FileTabCharacter)
+    - [GenericWhiteSpace](javacheckstyle.md#GenericWhiteSpace)
+    - [MethodParamPad](javacheckstyle.md#MethodParamPad)
+    - [NoLineWrap](javacheckstyle.md#NoLineWrap)
+    - [NoWhitespaceAfter](javacheckstyle.md#NoWhitespaceAfter)
+    - [NoWhitespaceBefore](javacheckstyle.md#NoWhitespaceBefore)
+    - [OperatorWrap](javacheckstyle.md#OperatorWrap)
+    - [ParenPad](javacheckstyle.md#ParenPad)
+    - [SeparatorWrap](javacheckstyle.md#SeparatorWrap)
+    - [TypecastParenPad](javacheckstyle.md#TypecastParenPad)
+    - [WhitespaceAfter](javacheckstyle.md#WhitespaceAfter)
+    - [WhitespaceAround](javacheckstyle.md#WhitespaceAround)
 
 
 ## [File Filters](https://checkstyle.sourceforge.io/config_filefilters.html)
@@ -1058,7 +1058,7 @@ public String foo(int foo, int bar) {
 
 ### [JavadocMethod](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMethod)
 
-@param, @return tag 생략이 가능하도록 함.
+public 메소드에서 @param, @return tag 생략이 가능하도록 함.
 
 ```xml
 <module name="JavadocMethod">
@@ -1214,7 +1214,7 @@ OK
 
 ### [JavadocType](https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType)
 
-public annotation/enum/class/interface에 JavaDoc이 존재하는지 검사.
+public type(annotation/enum/class/interface)에서 @param 생략이 가능하도록 함
 
 ```xml
 <module name="JavadocType">
@@ -1223,17 +1223,15 @@ public annotation/enum/class/interface에 JavaDoc이 존재하는지 검사.
 </module>
 ```
 
-VIOLATION
-```java
-class Foo { }
-```
-
 OK
 ```java
+// allow missing @param tag */
 /**
- * This is Foo class.
+ * This is Foo class
  */
-class Foo { }
+public class Foo<T> {
+    ...
+}
 ```
 
 ### [MissingJavadocMethod](https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocMethod)
@@ -1821,7 +1819,12 @@ Function<String, String> foo = bar -> bar.toLowerCase();
 지역 final 변수 이름을 검사. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
-<module name="LocalFinalVariableName"/>
+<module name="LocalFinalVariableName">
+    <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+        <message key="name.invalidPattern"
+                 value="Local final variable name ''{0}'' must match pattern ''{1}''."/>
+    </property>
+</module>
 ```
 
 VIOLATION
@@ -1995,7 +1998,11 @@ void foo(int bar1) { }
 static 변수 이름을 검사. `"^[a-z][a-zA-Z0-9]*$"` 패턴과 일치해야한다.
 
 ```xml
-<module name="StaticVariableName"/>
+<module name="StaticVariableName">
+    <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+    <message key="name.invalidPattern"
+             value="Static variable name ''{0}'' must match pattern ''{1}''."/>
+</module>
 ```
 
 VIOLATION
@@ -2086,10 +2093,12 @@ String foo = "fooooooooooooooooo" +
 
 ### [MethodLength](https://checkstyle.sourceforge.io/config_sizes.html#MethodLength)
 
-메소드가 150 라인을 초과했는지 검사.
+메소드가 10000 라인을 초과했는지 검사.
 
 ```xml
-<module name="MethodLength"/>
+<module name="MethodLength">
+    <property name="max" value="10000"/>
+</module>
 ```
 
 ### [ParameterNumber](https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber)
@@ -2307,11 +2316,7 @@ if (!foo) {
 토큰 앞의 공백을 검사.
 
 ```xml
-<module name="NoWhitespaceBefore">
-    <property name="tokens"
-              value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS, METHOD_REF"/>
-    <property name="allowLineBreaks" value="true"/>
-</module>
+<module name="NoWhitespaceBefore"/>
 ```
 
 VIOLATION
